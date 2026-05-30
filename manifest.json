@@ -1,6 +1,6 @@
 {
   "name": "Aeroambulancias Silva",
-  "short_name": "Silva APP",
+  "short_name": "Aero Silva",
   "description": "Transporte aeromédico especializado en Venezuela",
   "start_url": "./",
   "display": "standalone",
@@ -8,9 +8,9 @@
   "theme_color": "#0e2a5c",
   "icons": [
     {
-      "src": "logo.png",
+      "src": "logocelular.jpg",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/jpeg"
     },
     {
       "src": "logo.png",
