@@ -14,7 +14,7 @@
     --card-hover: #f7f8fa;
     --text-primary: #1a1a2e;
     --text-secondary: #5a6278;
-    --text-muted: #9aa3b8;
+    --text-muted: #6b7590; /* FIX 3: era #9aa3b8 — más oscuro para mejor legibilidad */
     --accent: #0e2a5c;
     --accent-soft: #e8edf7;
     --red: #d63031;
@@ -31,7 +31,9 @@
 
   html {
     scroll-behavior: smooth;
-    background: #d6ddf0; /* solid base — gradient via .bg-layer fixed div */
+    /* FIX 1: era #d6ddf0 (casi blanco). Ahora azul periwinkle medio que coincide
+       con el tono del gradiente — evita el "flash blanco" al overscroll en móvil */
+    background: #9ab0d0;
   }
 
   body {
@@ -48,8 +50,6 @@
   }
 
   /* ─── BACKGROUND LAYER ─── */
-  /* position:fixed div — the only reliable way to get a full-page
-     gradient on iOS Safari (background-attachment:fixed is broken there) */
   .bg-layer {
     position: fixed;
     inset: 0;
@@ -262,6 +262,7 @@
     box-shadow: var(--shadow-sm);
     transition: all 0.15s ease;
     letter-spacing: 0.01em;
+    text-align: center; /* FIX 2: centrado explícito */
   }
 
   .phone-btn:hover {
@@ -324,7 +325,7 @@
 
   .link-btn .btn-sub {
     font-size: 0.72rem;
-    color: var(--text-muted);
+    color: var(--text-muted); /* ahora más oscuro gracias al --text-muted actualizado */
     font-weight: 400;
     margin-top: 0.1rem;
     display: block;
@@ -473,7 +474,6 @@
   .sub-link .sub-title { display: block; font-size: 0.83rem; font-weight: 600; }
   .sub-link .sub-desc { display: block; font-size: 0.7rem; color: var(--text-muted); margin-top: 0.08rem; }
 
-  /* ─── FIX: Arrow always visible on sub-links (external link indicator) ─── */
   .sub-link .sub-arrow {
     color: var(--text-muted);
     opacity: 0.5;
@@ -497,7 +497,7 @@
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--text-muted);
+    color: var(--text-muted); /* ahora más oscuro gracias al --text-muted actualizado */
   }
 
   .section-label::before,
@@ -560,7 +560,6 @@
     z-index: 9999;
   }
 
-  /* ─── FIX: White strong button ─── */
   .a11y-toggle {
     width: 52px;
     height: 52px;
@@ -583,7 +582,6 @@
 
   .a11y-toggle svg { width: 26px; height: 26px; }
 
-  /* ─── FIX: "Accesibilidad" toast label ─── */
   .a11y-toast {
     position: absolute;
     bottom: 13px;
@@ -629,7 +627,6 @@
     position: absolute;
     bottom: 62px;
     left: 0;
-    /* ─── FIX: panel width adapts to larger text sizes ─── */
     width: clamp(220px, 240px, 92vw);
     background: #fff;
     border: 1px solid var(--border);
@@ -639,7 +636,6 @@
     display: none;
     flex-direction: column;
     gap: 0.55rem;
-    /* prevent overflow from enlarged text */
     overflow: hidden;
   }
 
@@ -656,7 +652,6 @@
     margin-bottom: 0.1rem;
   }
 
-  /* ─── FIX: Row wraps so buttons don't escape at large font sizes ─── */
   .a11y-row {
     display: flex;
     align-items: center;
@@ -684,7 +679,6 @@
     transition: all 0.15s;
     font-family: inherit;
     flex-shrink: 0;
-    /* ensure min tap size */
     min-width: 40px;
     text-align: center;
   }
@@ -733,7 +727,6 @@
   body.high-contrast .a11y-toggle { background: #fff !important; color: #0e2a5c !important; }
   body.high-contrast .a11y-toast { background: #111 !important; color: #7ba7ff !important; border-color: #555 !important; }
 
-  /* ─── Monochrome: filter .page + .bg-layer, FAB stays untouched ─── */
   body.monochrome .page,
   body.monochrome .bg-layer {
     filter: grayscale(1);
@@ -818,7 +811,7 @@
       </div>
       <div class="btn-text">
         <span class="btn-title">Atención General</span>
-        <span class="btn-sub" style="color:#00b894;">Consultas, información y coordinación de traslados</span>
+        <span class="btn-sub" style="color:#009e7a;">Consultas, información y coordinación de traslados</span>
       </div>
       <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
     </a>
@@ -830,7 +823,7 @@
       </div>
       <div class="btn-text">
         <span class="btn-title">Departamento de Ventas</span>
-        <span class="btn-sub" style="color:#00b894;">Contratos, cotizaciones y planes corporativos</span>
+        <span class="btn-sub" style="color:#009e7a;">Contratos, cotizaciones y planes corporativos</span>
       </div>
       <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
     </a>
@@ -983,7 +976,6 @@
 </script>
 
 <!-- ─── ACCESSIBILITY WIDGET ─── -->
-<!-- NOTE: .a11y-fab is OUTSIDE .page so monochrome filter on .page doesn't affect it -->
 <div class="a11y-fab" role="region" aria-label="Opciones de accesibilidad">
 
   <div class="a11y-panel" id="a11yPanel" role="menu">
@@ -1023,12 +1015,9 @@
   let fontSize = 100;
   let contrastMode = null;
 
-  /* ─── Toast: auto-hide after 3s ─── */
   window.addEventListener('DOMContentLoaded', () => {
     const toast = document.getElementById('a11yToast');
-    setTimeout(() => {
-      toast.classList.add('hidden');
-    }, 3000);
+    setTimeout(() => { toast.classList.add('hidden'); }, 3000);
   });
 
   function toggleA11y() {
@@ -1067,7 +1056,6 @@
     }
   }
 
-  /* Close panel on outside click */
   document.addEventListener('click', function(e) {
     if (!e.target.closest('.a11y-fab')) {
       document.getElementById('a11yPanel').classList.remove('open');
