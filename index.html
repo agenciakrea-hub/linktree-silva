@@ -10,8 +10,8 @@
 
   :root {
     --bg: transparent;
-    --card: rgba(255,255,255,0.82);
-    --card-hover: rgba(247,248,250,0.90);
+    --card: #ffffff;
+    --card-hover: #f7f8fa;
     --text-primary: #1a1a2e;
     --text-secondary: #5a6278;
     --text-muted: #9aa3b8;
@@ -31,14 +31,7 @@
 
   html {
     scroll-behavior: smooth;
-    /* Full-page fixed gradient — persists across the entire scroll */
-    background:
-      radial-gradient(ellipse 110% 55% at 50%   0%, rgba(20, 60, 160, 0.42) 0%, transparent 65%),
-      radial-gradient(ellipse  70% 45% at 95% 100%, rgba(10, 35,  95, 0.30) 0%, transparent 60%),
-      radial-gradient(ellipse  60% 40% at  0%  60%, rgba(20, 60, 160, 0.20) 0%, transparent 55%),
-      radial-gradient(ellipse  80% 35% at 50% 100%, rgba(10, 70, 190, 0.18) 0%, transparent 70%),
-      #d6ddf0;
-    background-attachment: fixed;
+    background: #d6ddf0; /* solid base — gradient via .bg-layer fixed div */
   }
 
   body {
@@ -52,6 +45,21 @@
     -webkit-font-smoothing: antialiased;
     position: relative;
     overflow-x: hidden;
+  }
+
+  /* ─── BACKGROUND LAYER ─── */
+  /* position:fixed div — the only reliable way to get a full-page
+     gradient on iOS Safari (background-attachment:fixed is broken there) */
+  .bg-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 130% 55% at 50%   0%, rgba(20, 60, 160, 0.46) 0%, transparent 62%),
+      radial-gradient(ellipse  80% 50% at 95% 100%, rgba(10, 35,  95, 0.32) 0%, transparent 58%),
+      radial-gradient(ellipse  65% 45% at  0%  58%, rgba(20, 60, 160, 0.22) 0%, transparent 52%),
+      radial-gradient(ellipse  90% 38% at 50% 100%, rgba(10, 70, 190, 0.20) 0%, transparent 68%);
   }
 
   /* ─── CONTAINER ─── */
@@ -245,8 +253,6 @@
     gap: 0.35rem;
     padding: 0.7rem 0.4rem;
     background: var(--card);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     text-decoration: none;
@@ -276,8 +282,6 @@
     width: 100%;
     padding: 1rem 1.25rem;
     background: var(--card);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     text-decoration: none;
@@ -351,8 +355,6 @@
   /* ─── SECTION ACCORDION ─── */
   .accordion {
     background: var(--card);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     overflow: hidden;
@@ -702,12 +704,9 @@
     background: #000 !important;
     color: #fff !important;
   }
-  body.high-contrast html,
-  html:has(body.high-contrast) {
-    background: #000 !important;
-  }
-  .high-contrast-bg { display: none; }
+  body.high-contrast .bg-layer { display: none; }
   body.high-contrast .page { background: #000 !important; }
+  .high-contrast-bg { display: none; }
   body.high-contrast .profile-name,
   body.high-contrast .btn-title { color: #fff !important; }
   body.high-contrast .profile-bio,
@@ -734,24 +733,17 @@
   body.high-contrast .a11y-toggle { background: #fff !important; color: #0e2a5c !important; }
   body.high-contrast .a11y-toast { background: #111 !important; color: #7ba7ff !important; border-color: #555 !important; }
 
-  /* ─── FIX: Monochrome applied to .page only — FAB stays fully visible & fixed ─── */
-  body.monochrome .page {
+  /* ─── Monochrome: filter .page + .bg-layer, FAB stays untouched ─── */
+  body.monochrome .page,
+  body.monochrome .bg-layer {
     filter: grayscale(1);
-  }
-  /* For the html background in monochrome, use a pseudo approach */
-  body.monochrome::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: inherit;
-    filter: grayscale(1);
-    z-index: -1;
-    pointer-events: none;
   }
 
 </style>
 </head>
 <body>
+
+<div class="bg-layer" aria-hidden="true"></div>
 
 <div class="page">
 
