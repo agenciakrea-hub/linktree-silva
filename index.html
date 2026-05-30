@@ -63,9 +63,10 @@
     top: 0;
     left: 0;
     width: 100%;
-    /* FIX: Aseguramos el tamaño dinámico para ignorar la barra de direcciones */
-    height: 100vh;
-    height: 100dvh;
+    /* FIX DEFINITIVO: Hacemos la capa un 20% más alta (120vh en lugar de 100vh).
+       Ese "excedente" quedará oculto por debajo, y rellenará el hueco
+       exacto que deja el navegador mientras ocultas la barra al scrollear. */
+    height: 120vh;
     z-index: 0;
     pointer-events: none;
     background:
