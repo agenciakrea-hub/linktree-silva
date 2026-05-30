@@ -1,81 +1,1103 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aeroambulancias Silva - Enlaces</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: #333;
-        }
-        .container {
-            max-width: 480px;
-            width: 100%;
-            text-align: center;
-            margin-top: 40px;
-        }
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #0056b3; /* Azul médico */
-        }
-        h1 {
-            font-size: 1.4rem;
-            margin: 15px 0 5px 0;
-            color: #002d62;
-        }
-        p {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 30px;
-        }
-        .link-btn {
-            display: block;
-            background-color: #0056b3; /* Botón azul principal */
-            color: white;
-            text-decoration: none;
-            margin-bottom: 16px;
-            padding: 15px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: transform 0.2s, background-color 0.2s;
-            box-shadow: 0 4px 6px rgba=0,0,0,0.05);
-        }
-        .link-btn:hover {
-            background-color: #003d80;
-            transform: translateY(-2px);
-        }
-        /* Botón destacado para Urgencias */
-        .btn-urgente {
-            background-color: #d9534f; /* Rojo de emergencia */
-        }
-        .btn-urgente:hover {
-            background-color: #c9302c;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aeroambulancias Silva</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #eef1f6;
+    --card: #ffffff;
+    --card-hover: #f7f8fa;
+    --text-primary: #1a1a2e;
+    --text-secondary: #5a6278;
+    --text-muted: #9aa3b8;
+    --accent: #0e2a5c;
+    --accent-soft: #e8edf7;
+    --red: #d63031;
+    --red-soft: #fff0ef;
+    --green: #00b894;
+    --green-soft: #e6faf6;
+    --border: rgba(0,0,0,0.09);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.13), 0 2px 8px rgba(0,0,0,0.07);
+    --radius: 16px;
+    --radius-pill: 999px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem 5rem;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* ─── SOFT BLUE BACKGROUND BLOBS ─── */
+  .bg-blob {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .bg-blob-1 {
+    top: -18%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 620px;
+    background: radial-gradient(ellipse at center,
+      rgba(30, 75, 168, 0.18) 0%,
+      rgba(14, 42, 92, 0.08) 45%,
+      transparent 72%);
+    filter: blur(55px);
+  }
+  .bg-blob-2 {
+    bottom: 5%;
+    right: -20%;
+    width: 550px;
+    height: 500px;
+    background: radial-gradient(ellipse at center,
+      rgba(14, 100, 200, 0.10) 0%,
+      transparent 68%);
+    filter: blur(70px);
+  }
+  .bg-blob-3 {
+    top: 40%;
+    left: -18%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(ellipse at center,
+      rgba(30, 75, 168, 0.07) 0%,
+      transparent 70%);
+    filter: blur(60px);
+  }
+
+  /* ─── CONTAINER ─── */
+  .page {
+    width: 100%;
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── PROFILE HEADER ─── */
+  .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2.5rem 1.5rem 2rem;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .avatar-wrap {
+    margin-bottom: 1.25rem;
+  }
+
+  .logo-container {
+    width: 140px;
+    height: 140px;
+    border-radius: 20px;
+    background: #1e4ba8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 24px rgba(30,75,168,0.35);
+    padding: 12px;
+  }
+
+  .logo-img {
+    width: 116px;
+    height: 116px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .profile-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+    margin-bottom: 0.35rem;
+  }
+
+  .profile-bio {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    line-height: 1.55;
+    max-width: 360px;
+    margin: 0 auto 1.4rem;
+  }
+
+  /* Social icons row */
+  .social-icons {
+    display: flex;
+    gap: 0.55rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .social-icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .social-icon-btn:hover {
+    transform: translateY(-2px) scale(1.07);
+    box-shadow: var(--shadow-md);
+  }
+
+  .social-icon-btn svg { width: 18px; height: 18px; }
+
+  /* ─── LINKS SECTION ─── */
+  .links-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0 0.25rem;
+  }
+
+  /* ─── EMERGENCY BUTTON ─── */
+  .btn-emergency {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: var(--red);
+    border: none;
+    border-radius: var(--radius);
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(214, 48, 49, 0.35);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    animation: fadeUp 0.4s ease 0.05s both;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-emergency::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .btn-emergency:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(214, 48, 49, 0.4);
+  }
+
+  .btn-emergency:active { transform: translateY(0); }
+
+  .pulse-ring {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .pulse-ring::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.3);
+    animation: ping 2s ease-in-out infinite;
+  }
+
+  @keyframes ping {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    60% { opacity: 0; transform: scale(1.4); }
+  }
+
+  .pulse-ring svg { width: 20px; height: 20px; }
+
+  .btn-emergency .btn-text { flex: 1; }
+  .btn-emergency .btn-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    display: block;
+    letter-spacing: 0.01em;
+  }
+  .btn-emergency .btn-sub {
+    font-size: 0.72rem;
+    opacity: 0.82;
+    font-weight: 400;
+    margin-top: 0.1rem;
+    display: block;
+  }
+
+  /* Phone grid */
+  .phone-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    animation: fadeUp 0.4s ease 0.08s both;
+  }
+
+  .phone-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.7rem 0.4rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    font-weight: 500;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.15s ease;
+    letter-spacing: 0.01em;
+  }
+
+  .phone-btn:hover {
+    background: var(--red-soft);
+    border-color: rgba(214,48,49,0.2);
+    color: var(--red);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .phone-btn svg { width: 13px; height: 13px; flex-shrink: 0; color: var(--red); }
+
+  /* ─── STANDARD LINK BUTTON ─── */
+  .link-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem 1.25rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text-primary);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.18s ease;
+    position: relative;
+  }
+
+  .link-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(0,0,0,0.14);
+  }
+
+  .link-btn:active { transform: translateY(0); box-shadow: var(--shadow-sm); }
+
+  .link-btn .icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.35rem;
+  }
+
+  .link-btn .btn-text { flex: 1; min-width: 0; }
+
+  .link-btn .btn-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .link-btn .btn-sub {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-top: 0.1rem;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .link-btn .arrow {
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transition: transform 0.15s ease;
+  }
+
+  .link-btn:hover .arrow { transform: translate(2px, -2px); color: var(--text-secondary); }
+
+  /* Whatsapp button */
+  .btn-whatsapp {
+    background: linear-gradient(135deg, #e8faf3, #f0fdf8);
+    border-color: rgba(0,184,148,0.2);
+  }
+
+  .btn-whatsapp:hover {
+    background: linear-gradient(135deg, #d4f5ea, #e6faf5);
+    border-color: rgba(0,184,148,0.35);
+  }
+
+  /* ─── SECTION ACCORDION ─── */
+  .accordion {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.18s ease;
+  }
+
+  .accordion:hover { box-shadow: var(--shadow-md); }
+
+  .accordion-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem 1.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.15s ease;
+  }
+
+  .accordion-header:hover { background: var(--card-hover); }
+
+  .accordion-header.open { background: var(--accent-soft); }
+
+  .accordion-header .icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .accordion-header .btn-text { flex: 1; }
+  .accordion-header .btn-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: block;
+  }
+  .accordion-header .btn-sub {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 0.1rem;
+    display: block;
+  }
+
+  .chevron-icon {
+    color: var(--text-muted);
+    transition: transform 0.25s cubic-bezier(.4,0,.2,1);
+    flex-shrink: 0;
+  }
+
+  .accordion-header.open .chevron-icon {
+    transform: rotate(180deg);
+    color: var(--accent);
+  }
+
+  .accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(.4,0,.2,1);
+    background: #fafbfc;
+  }
+
+  .accordion-body.open {
+    max-height: 1000px;
+  }
+
+  .accordion-inner {
+    padding: 0.35rem 0.75rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* sub-items inside accordion */
+  .sub-link {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.75rem 0.75rem;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.15s ease;
+    border: 1px solid transparent;
+  }
+
+  .sub-link:hover {
+    background: var(--card);
+    border-color: var(--border);
+    transform: translateX(3px);
+  }
+
+  .sub-link .sub-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-soft);
+    flex-shrink: 0;
+  }
+
+  .sub-link .sub-icon svg { width: 16px; height: 16px; color: var(--accent); }
+
+  .sub-link .sub-text { flex: 1; }
+  .sub-link .sub-title { display: block; font-size: 0.83rem; font-weight: 600; }
+  .sub-link .sub-desc { display: block; font-size: 0.7rem; color: var(--text-muted); margin-top: 0.08rem; }
+
+  /* ─── FIX: Arrow always visible on sub-links (external link indicator) ─── */
+  .sub-link .sub-arrow {
+    color: var(--text-muted);
+    opacity: 0.5;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+
+  .sub-link:hover .sub-arrow {
+    opacity: 1;
+    transform: translate(2px, -2px);
+    color: var(--accent);
+  }
+
+  /* ─── DIVIDER LABEL ─── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.5rem 0.25rem;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .section-label::before,
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding: 0 1rem;
+    animation: fadeUp 0.5s ease 0.5s both;
+  }
+
+  .footer-text {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .footer-text a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  /* Color helpers */
+  .bg-blue   { background: #e8edf7; }
+  .bg-red    { background: #fff0ef; }
+  .bg-green  { background: #e6faf6; }
+  .bg-orange { background: #fff3e6; }
+  .bg-gray   { background: #f0f2f5; }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .links-section > *:nth-child(1)  { animation: fadeUp 0.4s ease 0.08s both; }
+  .links-section > *:nth-child(2)  { animation: fadeUp 0.4s ease 0.13s both; }
+  .links-section > *:nth-child(3)  { animation: fadeUp 0.4s ease 0.18s both; }
+  .links-section > *:nth-child(4)  { animation: fadeUp 0.4s ease 0.22s both; }
+  .links-section > *:nth-child(5)  { animation: fadeUp 0.4s ease 0.26s both; }
+  .links-section > *:nth-child(6)  { animation: fadeUp 0.4s ease 0.30s both; }
+  .links-section > *:nth-child(7)  { animation: fadeUp 0.4s ease 0.34s both; }
+  .links-section > *:nth-child(8)  { animation: fadeUp 0.4s ease 0.38s both; }
+  .links-section > *:nth-child(9)  { animation: fadeUp 0.4s ease 0.42s both; }
+  .links-section > *:nth-child(10) { animation: fadeUp 0.4s ease 0.46s both; }
+
+  /* ─── ACCESSIBILITY WIDGET ─── */
+  .a11y-fab {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    z-index: 9999;
+  }
+
+  /* ─── FIX: White strong button ─── */
+  .a11y-toggle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1.5px solid rgba(0, 0, 0, 0.10);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18), 0 1px 4px rgba(0,0,0,0.10);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    color: var(--accent);
+  }
+
+  .a11y-toggle:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.22), 0 2px 8px rgba(0,0,0,0.10);
+  }
+
+  .a11y-toggle svg { width: 26px; height: 26px; }
+
+  /* ─── FIX: "Accesibilidad" toast label ─── */
+  .a11y-toast {
+    position: absolute;
+    bottom: 13px;
+    left: 62px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.42rem 0.9rem;
+    font-size: 0.73rem;
+    font-weight: 600;
+    color: var(--accent);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    white-space: nowrap;
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    pointer-events: none;
+    letter-spacing: 0.04em;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    text-transform: uppercase;
+  }
+
+  .a11y-toast::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background: #ffffff;
+    border-left: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  .a11y-toast.hidden {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+
+  .a11y-panel {
+    position: absolute;
+    bottom: 62px;
+    left: 0;
+    /* ─── FIX: panel width adapts to larger text sizes ─── */
+    width: clamp(220px, 240px, 92vw);
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.16);
+    padding: 0.85rem;
+    display: none;
+    flex-direction: column;
+    gap: 0.55rem;
+    /* prevent overflow from enlarged text */
+    overflow: hidden;
+  }
+
+  .a11y-panel.open { display: flex; }
+
+  .a11y-panel-title {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0.1rem;
+  }
+
+  /* ─── FIX: Row wraps so buttons don't escape at large font sizes ─── */
+  .a11y-row {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+  }
+
+  .a11y-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .a11y-btn {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.35rem 0.55rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+    flex-shrink: 0;
+    /* ensure min tap size */
+    min-width: 40px;
+    text-align: center;
+  }
+
+  .a11y-btn:hover { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+  .a11y-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  /* Dyslexia font */
+  body.dyslexia-font, body.dyslexia-font * {
+    font-family: 'OpenDyslexic', 'Comic Sans MS', 'Trebuchet MS', cursive !important;
+    letter-spacing: 0.05em;
+    word-spacing: 0.1em;
+    line-height: 1.8 !important;
+  }
+
+  /* High contrast */
+  body.high-contrast {
+    background: #000 !important;
+    color: #fff !important;
+  }
+  body.high-contrast .page { background: #000 !important; }
+  body.high-contrast .profile-name,
+  body.high-contrast .btn-title { color: #fff !important; }
+  body.high-contrast .profile-bio,
+  body.high-contrast .btn-sub,
+  body.high-contrast .section-label { color: #ccc !important; }
+  body.high-contrast .link-btn,
+  body.high-contrast .accordion,
+  body.high-contrast .phone-btn {
+    background: #111 !important;
+    border-color: #555 !important;
+    color: #fff !important;
+  }
+  body.high-contrast .btn-whatsapp { background: #0a2e1a !important; border-color: #25d366 !important; }
+  body.high-contrast .accordion-body { background: #0a0a0a !important; }
+  body.high-contrast .accordion-inner .sub-link:hover { background: #222 !important; }
+  body.high-contrast .social-icon-btn { background: #111 !important; border-color: #444 !important; }
+  body.high-contrast .a11y-panel { background: #111 !important; border-color: #555 !important; }
+  body.high-contrast .a11y-label { color: #fff !important; }
+  body.high-contrast .a11y-btn { background: #222 !important; border-color: #666 !important; color: #fff !important; }
+  body.high-contrast .logo-container { background: #002080 !important; }
+  body.high-contrast .footer-text { color: #aaa !important; }
+  body.high-contrast .footer-text a { color: #7ba7ff !important; }
+  body.high-contrast .bg-blob { display: none; }
+  body.high-contrast .a11y-toggle { background: #fff !important; color: #0e2a5c !important; }
+  body.high-contrast .a11y-toast { background: #111 !important; color: #7ba7ff !important; border-color: #555 !important; }
+
+  /* ─── FIX: Monochrome applied to .page only — FAB stays fully visible & fixed ─── */
+  body.monochrome .page,
+  body.monochrome .bg-blob {
+    filter: grayscale(1);
+  }
+  /* Do NOT apply filter to body or .a11y-fab */
+
+</style>
 </head>
 <body>
 
-    <div class="container">
-        <img class="profile-img" src="https://www.aeroambulanciasilva.com/web/image/website/1/logo" alt="Aeroambulancias Silva">
-        
-        <h1>Aeroambulancias Silva</h1>
-        <p>Servicio de Traslado Aéreo Médico Autorizado</p>
+<!-- ─── SOFT BLUE BACKGROUND BLOBS ─── -->
+<div class="bg-blob bg-blob-1"></div>
+<div class="bg-blob bg-blob-2"></div>
+<div class="bg-blob bg-blob-3"></div>
 
-        <a href="tel:+58XXXXXXX" class="link-btn btn-urgente">🚨 LLAMAR A URGENCIAS</a>
-        <a href="https://wa.me/tu-numero" class="link-btn">💬 Cotizar por WhatsApp</a>
-        <a href="https://www.aeroambulanciasilva.com/" class="link-btn">🌐 Visitar Sitio Web Oficial</a>
-        <a href="https://www.aeroambulanciasilva.com/contactus" class="link-btn">📩 Solicitar Información / Contacto</a>
+<div class="page">
+
+  <!-- ─── PROFILE ─── -->
+  <div class="profile">
+    <div class="avatar-wrap">
+      <div class="logo-container">
+        <img src="[BASE64_LOGO_OCULTO]" alt="AeroAmbulancias Silva" class="logo-img"/>
+      </div>
     </div>
+    <h1 class="profile-name">Aeroambulancias Silva</h1>
+    <p class="profile-bio">Transporte aeromédico especializado en Venezuela. Evacuaciones, traslados médicos y atención de emergencias los 365 días — sin importar el horario.</p>
+
+    <!-- Social icons row -->
+    <div class="social-icons">
+      <a href="https://www.instagram.com/aeroambulanciasilva/" target="_blank" class="social-icon-btn" title="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#e1306c" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="https://www.facebook.com/aeroambulanciasilva/" target="_blank" class="social-icon-btn" title="Facebook">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1877f2" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a href="https://x.com/aeroambulancias" target="_blank" class="social-icon-btn" title="X / Twitter">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2"><path d="M4 4l16 16M4 20L20 4"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/company/aeroambulancias-silva" target="_blank" class="social-icon-btn" title="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0077b5" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@aeroambulanciasilva" target="_blank" class="social-icon-btn" title="YouTube">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#ff0000" stroke-width="1.8"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#ff0000" stroke="none"/></svg>
+      </a>
+      <a href="https://www.aeroambulanciasilva.com" target="_blank" class="social-icon-btn" title="Sitio Web">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0e2a5c" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- ─── LINKS ─── -->
+  <div class="links-section">
+
+    <!-- EMERGENCIAS -->
+    <a href="tel:+582123105225" class="btn-emergency">
+      <div class="pulse-ring">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.39 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </div>
+      <div class="btn-text">
+        <span class="btn-title">🚨 Emergencias — Llamar Ahora</span>
+        <span class="btn-sub">Disponible 24 horas · 365 días · Sin importar el horario</span>
+      </div>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <!-- Teléfonos -->
+    <div class="phone-row">
+      <a href="tel:+582123105225" class="phone-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.39 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (0212) 310.52.25
+      </a>
+      <a href="tel:+582129534822" class="phone-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.39 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (0212) 953.48.22
+      </a>
+      <a href="tel:+584241466595" class="phone-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.39 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (0424) 146.65.95
+      </a>
+    </div>
+
+    <!-- WhatsApp General -->
+    <a href="https://api.whatsapp.com/send?phone=584241466595&text=M%C3%A1s%20informaci%C3%B3n%20sobre%20los%20servicios%20que%20prestan%20" target="_blank" class="link-btn btn-whatsapp">
+      <div class="icon-box" style="background:rgba(37,211,102,0.12);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+      </div>
+      <div class="btn-text">
+        <span class="btn-title">Atención General</span>
+        <span class="btn-sub" style="color:#00b894;">Consultas, información y coordinación de traslados</span>
+      </div>
+      <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+
+    <!-- WhatsApp Ventas -->
+    <a href="https://api.whatsapp.com/send/?phone=584129197606&text&type=phone_number&app_absent=0&utm_source=ig" target="_blank" class="link-btn btn-whatsapp">
+      <div class="icon-box" style="background:rgba(37,211,102,0.12);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+      </div>
+      <div class="btn-text">
+        <span class="btn-title">Departamento de Ventas</span>
+        <span class="btn-sub" style="color:#00b894;">Contratos, cotizaciones y planes corporativos</span>
+      </div>
+      <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+
+    <!-- SECCIÓN: Servicios (accordion) -->
+    <div class="section-label">Nuestros Servicios</div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="icon-box bg-blue">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0e2a5c" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+        </div>
+        <div class="btn-text">
+          <span class="btn-title">Ver todos los servicios</span>
+          <span class="btn-sub">Aéreo · Terrestre · Offshore · FRMS · Telemedicina</span>
+        </div>
+        <svg class="chevron-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="accordion-body">
+        <div class="accordion-inner">
+
+          <a href="https://www.aeroambulanciasilva.com/en/" target="_blank" class="sub-link">
+            <div class="sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M3 12h18M3 12l4-4M3 12l4 4"/><circle cx="18" cy="12" r="3" opacity=".5"/></svg></div>
+            <div class="sub-text">
+              <span class="sub-title">Aeroambulancias / MedEvac</span>
+              <span class="sub-desc">Evacuaciones aéreas nacionales e internacionales</span>
+            </div>
+            <svg class="sub-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+
+          <a href="https://www.aeroambulanciasilva.com/en/ambulancias" target="_blank" class="sub-link">
+            <div class="sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><rect x="1" y="10" width="22" height="10" rx="2"/><path d="M8 10V8a4 4 0 0 1 8 0v2"/><circle cx="7" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg></div>
+            <div class="sub-text">
+              <span class="sub-title">Ambulancias Terrestres</span>
+              <span class="sub-desc">Cobertura terrestre con unidades especializadas</span>
+            </div>
+            <svg class="sub-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+
+          <a href="https://www.aeroambulanciasilva.com/en/sevicios-asistenciales-de-salud" target="_blank" class="sub-link">
+            <div class="sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+            <div class="sub-text">
+              <span class="sub-title">Atención Médica y Telemedicina</span>
+              <span class="sub-desc">Servicios asistenciales y consulta remota</span>
+            </div>
+            <svg class="sub-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+
+          <a href="https://www.aeroambulanciasilva.com/en/raa-red-de-apoyo-aeromedico-proveedores" target="_blank" class="sub-link">
+            <div class="sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+            <div class="sub-text">
+              <span class="sub-title">Red de Apoyo Aeromédico — RAA</span>
+              <span class="sub-desc">Proveedores y aliados nacionales</span>
+            </div>
+            <svg class="sub-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+
+          <a href="https://www.aeroambulanciasilva.com/en/planes-de-evacuacion-de-emergencia" target="_blank" class="sub-link">
+            <div class="sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><circle cx="12" cy="17" r="0.5" fill="currentColor"/></svg></div>
+            <div class="sub-text">
+              <span class="sub-title">Planes de Evacuación y Gestión de Crisis</span>
+              <span class="sub-desc">Preparación y respuesta para empresas</span>
+            </div>
+            <svg class="sub-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+
+          <a href="https://www.aeroambulanciasilva.com/en/servicio-offshore" target="_blank" class="sub-link">
+            <div class="sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M3 17l6-6 4 4 8-10"/><path d="M2 21h20"/></svg></div>
+            <div class="sub-text">
+              <span class="sub-title">MedEvac Off Shore</span>
+              <span class="sub-desc">Evacuaciones en plataformas y zonas remotas</span>
+            </div>
+            <svg class="sub-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+
+          <a href="https://www.aeroambulanciasilva.com/en/frms" target="_blank" class="sub-link">
+            <div class="sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
+            <div class="sub-text">
+              <span class="sub-title">FRMS — Gestión de Fatiga</span>
+              <span class="sub-desc">Fatigue Risk Management para operadores</span>
+            </div>
+            <svg class="sub-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Sitio Web -->
+    <div class="section-label">Más información</div>
+
+    <a href="https://www.aeroambulanciasilva.com" target="_blank" class="link-btn">
+      <div class="icon-box bg-blue">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0e2a5c" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
+      <div class="btn-text">
+        <span class="btn-title">Sitio Web Oficial</span>
+        <span class="btn-sub">aeroambulanciasilva.com</span>
+      </div>
+      <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+
+    <a href="https://www.aeroambulanciasilva.com/en/quienes-somos-1" target="_blank" class="link-btn">
+      <div class="icon-box bg-blue">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0e2a5c" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div class="btn-text">
+        <span class="btn-title">¿Quiénes somos?</span>
+        <span class="btn-sub">Historia, misión y equipo de Aeroambulancias Silva</span>
+      </div>
+      <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+
+    <a href="https://www.youtube.com/@aeroambulanciasilva" target="_blank" class="link-btn">
+      <div class="icon-box" style="background:rgba(255,0,0,0.09);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff0000" stroke-width="1.8"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#ff0000" stroke="none"/></svg>
+      </div>
+      <div class="btn-text">
+        <span class="btn-title">Canal de YouTube</span>
+        <span class="btn-sub">Operaciones, testimonios y contenido aeromédico</span>
+      </div>
+      <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+
+  </div>
+
+  <!-- ─── FOOTER ─── -->
+  <div class="footer">
+    <p class="footer-text">
+      © 2026 <a href="https://www.aeroambulanciasilva.com" target="_blank">Aeroambulancias Silva</a> &nbsp;·&nbsp; Venezuela
+    </p>
+    <p class="footer-text" style="margin-top:0.3rem;">Servicio Aeromédico 24/7 · 365 días al año</p>
+  </div>
+
+</div><!-- end .page -->
+
+<script>
+  function toggleAccordion(header) {
+    const body = header.nextElementSibling;
+    const isOpen = header.classList.contains('open');
+    document.querySelectorAll('.accordion-header.open').forEach(h => {
+      h.classList.remove('open');
+      h.nextElementSibling.classList.remove('open');
+    });
+    if (!isOpen) {
+      header.classList.add('open');
+      body.classList.add('open');
+    }
+  }
+</script>
+
+<!-- ─── ACCESSIBILITY WIDGET ─── -->
+<!-- NOTE: .a11y-fab is OUTSIDE .page so monochrome filter on .page doesn't affect it -->
+<div class="a11y-fab" role="region" aria-label="Opciones de accesibilidad">
+
+  <div class="a11y-panel" id="a11yPanel" role="menu">
+    <div class="a11y-panel-title">Accesibilidad</div>
+
+    <div class="a11y-row">
+      <span class="a11y-label">Tamaño de texto</span>
+      <button class="a11y-btn" onclick="changeTextSize(-1)" aria-label="Reducir texto">A−</button>
+      <button class="a11y-btn" onclick="changeTextSize(1)" aria-label="Agrandar texto">A+</button>
+    </div>
+
+    <div class="a11y-row">
+      <span class="a11y-label">Fuente dislexia</span>
+      <button class="a11y-btn" id="dyslexiaBtn" onclick="toggleDyslexia()" aria-label="Activar fuente para dislexia">Activar</button>
+    </div>
+
+    <div class="a11y-row">
+      <span class="a11y-label">Alto contraste</span>
+      <button class="a11y-btn" id="contrastBtn" onclick="toggleContrast('high')" aria-label="Modo oscuro">Oscuro</button>
+      <button class="a11y-btn" id="monoBtn" onclick="toggleContrast('mono')" aria-label="Monocromo">Mono</button>
+    </div>
+  </div>
+
+  <!-- Toast "Accesibilidad" — visible on load, fades after 3s -->
+  <div class="a11y-toast" id="a11yToast">Accesibilidad</div>
+
+  <button class="a11y-toggle" id="a11yToggle" onclick="toggleA11y()" aria-label="Abrir opciones de accesibilidad" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">
+      <circle cx="12" cy="5" r="2"/>
+      <path d="M8 21v-7H5l3-7h8l3 7h-3v7"/>
+    </svg>
+  </button>
+
+</div>
+
+<script>
+  let fontSize = 100;
+  let contrastMode = null;
+
+  /* ─── Toast: auto-hide after 3s ─── */
+  window.addEventListener('DOMContentLoaded', () => {
+    const toast = document.getElementById('a11yToast');
+    setTimeout(() => {
+      toast.classList.add('hidden');
+    }, 3000);
+  });
+
+  function toggleA11y() {
+    const panel = document.getElementById('a11yPanel');
+    const btn = document.getElementById('a11yToggle');
+    const isOpen = panel.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen);
+  }
+
+  function changeTextSize(dir) {
+    fontSize = Math.min(140, Math.max(75, fontSize + dir * 10));
+    document.documentElement.style.fontSize = fontSize + '%';
+  }
+
+  function toggleDyslexia() {
+    const active = document.body.classList.toggle('dyslexia-font');
+    const btn = document.getElementById('dyslexiaBtn');
+    btn.textContent = active ? 'Desactivar' : 'Activar';
+    btn.classList.toggle('active', active);
+  }
+
+  function toggleContrast(mode) {
+    const hcBtn = document.getElementById('contrastBtn');
+    const monoBtn = document.getElementById('monoBtn');
+    document.body.classList.remove('high-contrast', 'monochrome');
+    hcBtn.classList.remove('active');
+    monoBtn.classList.remove('active');
+    if (contrastMode !== mode) {
+      document.body.classList.add(mode === 'high' ? 'high-contrast' : 'monochrome');
+      (mode === 'high' ? hcBtn : monoBtn).classList.add('active');
+      contrastMode = mode;
+    } else {
+      contrastMode = null;
+    }
+  }
+
+  /* Close panel on outside click */
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.a11y-fab')) {
+      document.getElementById('a11yPanel').classList.remove('open');
+      document.getElementById('a11yToggle').setAttribute('aria-expanded', 'false');
+    }
+  });
+</script>
 
 </body>
 </html>
