@@ -9,11 +9,14 @@
 <link rel="icon" type="image/png" sizes="192x192" href="logo.png">
 <link rel="icon" type="image/png" sizes="512x512" href="logo.png">
 
+<link rel="manifest" href="manifest.json">
+
 <meta name="theme-color" content="#0e2a5c"> 
 
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+
+ <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   /* ... aquí sigue todo tu CSS intacto ... */
@@ -838,7 +841,24 @@
       <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
     </a>
 
-    <div class="section-label">Nuestros Servicios</div>
+    
+   
+   
+   <button id="btn-install" class="link-btn" style="display: none; background: #0e2a5c; border-color: #0e2a5c;">
+      <div class="icon-box" style="background: rgba(255,255,255,0.15);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </div>
+      <div class="btn-text">
+        <span class="btn-title" style="color: #ffffff;">Instalar la App</span>
+        <span class="btn-sub" style="color: rgba(255,255,255,0.75);">Añadir Aeroambulancias a tu inicio</span>
+      </div>
+    </button>
+   
+   
+   
+   
+   
+   <div class="section-label">Nuestros Servicios</div>
 
     <div class="accordion">
       <button class="accordion-header" onclick="toggleAccordion(this)">
@@ -1067,5 +1087,60 @@
   });
 </script>
 
+
+
+
+
+
+<script>
+  let promptInstalacion;
+  const btnInstalar = document.getElementById('btn-install');
+
+  // Detectamos si es un dispositivo móvil (para no mostrarlo en PCs)
+  const esMovil = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+  // 1. Escuchamos si el navegador (Android) permite instalar la app
+  window.addEventListener('beforeinstallprompt', (evento) => {
+    // Evitamos que Chrome muestre su propio aviso en la parte inferior
+    evento.preventDefault();
+    // Guardamos el evento para usarlo cuando hagan clic en el botón
+    promptInstalacion = evento;
+    
+    // Si es un celular, mostramos nuestro botón personalizado
+    if(esMovil) {
+      btnInstalar.style.display = 'flex';
+    }
+  });
+
+  // 2. Qué pasa cuando hacen clic en nuestro botón
+  btnInstalar.addEventListener('click', async () => {
+    if (promptInstalacion) {
+      // Lanzamos la ventana nativa de instalación de Android
+      promptInstalacion.prompt();
+      // Esperamos a ver qué eligió el usuario (Aceptar o Cancelar)
+      const resultado = await promptInstalacion.userChoice;
+      
+      if (resultado.outcome === 'accepted') {
+        // Si aceptó, ocultamos el botón
+        btnInstalar.style.display = 'none';
+      }
+      // Limpiamos la variable
+      promptInstalacion = null;
+    }
+  });
+
+  // 3. Ocultar el botón si la app ya se instaló exitosamente
+  window.addEventListener('appinstalled', () => {
+    btnInstalar.style.display = 'none';
+    promptInstalacion = null;
+  });
+</script>
+
+
+
+
+
+
+ 
 </body>
 </html>
