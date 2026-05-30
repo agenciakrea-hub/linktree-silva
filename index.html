@@ -31,15 +31,15 @@
 
   html {
     scroll-behavior: smooth;
-    /* FIX 1: era #d6ddf0 (casi blanco). Ahora azul periwinkle medio que coincide
-       con el tono del gradiente — evita el "flash blanco" al overscroll en móvil */
     background: #9ab0d0;
+    overscroll-behavior: none; /* FIX: Elimina el rebote en móviles */
   }
 
   body {
     font-family: 'DM Sans', system-ui, sans-serif;
     background: transparent;
     min-height: 100vh;
+    min-height: 100dvh; /* FIX: Se adapta a la barra de direcciones del móvil */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -47,12 +47,15 @@
     -webkit-font-smoothing: antialiased;
     position: relative;
     overflow-x: hidden;
+    overscroll-behavior: none; /* FIX: Elimina el rebote en el body */
   }
 
-  /* ─── BACKGROUND LAYER ─── */
   .bg-layer {
     position: fixed;
     inset: 0;
+    height: 100vh;
+    height: 100dvh; /* FIX: Alto dinámico exacto */
+    width: 100vw;
     z-index: 0;
     pointer-events: none;
     background:
