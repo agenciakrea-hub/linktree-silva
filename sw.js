@@ -1,5 +1,5 @@
 // ─── CAMBIÁ ESTE NÚMERO CADA VEZ QUE ACTUALICES EL SITIO ───
-const VERSION = 'v5';
+const VERSION = 'v6';
 // ────────────────────────────────────────────────────────────
 const CACHE_NAME = 'aerosilva-' + VERSION;
 const ASSETS = [
