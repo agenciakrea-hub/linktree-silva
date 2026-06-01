@@ -38,10 +38,7 @@
     --radius-pill: 999px;
   }
 
-  html {
-    scroll-behavior: smooth;
-    background: #9ab0d0;
-  }
+  html { scroll-behavior: smooth; background: #9ab0d0; }
 
   body {
     font-family: 'DM Sans', system-ui, sans-serif;
@@ -55,56 +52,14 @@
     overflow-x: hidden; 
   }
 
-  /* ─── BACKGROUND LAYER ─── */
-  .bg-layer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 120vh;
-    z-index: 0;
-    pointer-events: none;
-    background:
-      radial-gradient(ellipse 130% 55% at 50%   0%, rgba(20, 60, 160, 0.46) 0%, transparent 62%),
-      radial-gradient(ellipse  80% 50% at 95% 100%, rgba(10, 35,  95, 0.32) 0%, transparent 58%),
-      radial-gradient(ellipse  65% 45% at  0%  58%, rgba(20, 60, 160, 0.22) 0%, transparent 52%),
-      radial-gradient(ellipse  90% 38% at 50% 100%, rgba(10, 70, 190, 0.20) 0%, transparent 68%);
-  }
+  .bg-layer { position: fixed; top: 0; left: 0; width: 100%; height: 120vh; z-index: 0; pointer-events: none; background: radial-gradient(ellipse 130% 55% at 50% 0%, rgba(20, 60, 160, 0.46) 0%, transparent 62%), radial-gradient(ellipse 80% 50% at 95% 100%, rgba(10, 35, 95, 0.32) 0%, transparent 58%), radial-gradient(ellipse 65% 45% at 0% 58%, rgba(20, 60, 160, 0.22) 0%, transparent 52%), radial-gradient(ellipse 90% 38% at 50% 100%, rgba(10, 70, 190, 0.20) 0%, transparent 68%); }
 
-  /* ─── CONTAINER ─── */
-  .page {
-    width: 100%;
-    max-width: 640px;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    position: relative;
-    z-index: 1;
-  }
+  .page { width: 100%; max-width: 640px; display: flex; flex-direction: column; gap: 0; position: relative; z-index: 1; }
 
-  /* ─── PROFILE HEADER ─── */
-  .profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 1.2rem 1.5rem 2rem;
-    animation: fadeUp 0.4s ease both;
-  }
-
+  .profile { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.2rem 1.5rem 2rem; animation: fadeUp 0.4s ease both; }
   .avatar-wrap { margin-bottom: 1.25rem; }
-
-  .logo-container {
-    width: 140px; height: 140px;
-    border-radius: 20px;
-    background: #1e4ba8;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 6px 24px rgba(30,75,168,0.35);
-    padding: 12px;
-  }
-
+  .logo-container { width: 140px; height: 140px; border-radius: 20px; background: #1e4ba8; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 24px rgba(30,75,168,0.35); padding: 12px; }
   .logo-img { width: 116px; height: 116px; object-fit: contain; display: block; }
-
   .profile-name { font-size: 1.3rem; font-weight: 700; color: var(--text-primary); letter-spacing: -0.01em; margin-bottom: 0.35rem; }
   .profile-bio { font-size: 0.875rem; color: var(--text-secondary); font-weight: 400; line-height: 1.55; max-width: 360px; margin: 0 auto 1.4rem; }
 
@@ -113,31 +68,25 @@
   .social-icon-btn:hover { transform: translateY(-2px) scale(1.07); box-shadow: var(--shadow-md); }
   .social-icon-btn svg { width: 18px; height: 18px; }
 
-  /* ─── LINKS SECTION ─── */
   .links-section { display: flex; flex-direction: column; gap: 0.75rem; padding: 0 0.25rem; }
 
-  /* ─── EMERGENCY BUTTON ─── */
   .btn-emergency { display: flex; align-items: center; gap: 1rem; width: 100%; padding: 1rem 1.5rem; background: var(--red); border: none; border-radius: var(--radius); color: #fff; text-decoration: none; cursor: pointer; box-shadow: 0 4px 20px rgba(214, 48, 49, 0.35); transition: transform 0.15s ease, box-shadow 0.15s ease; animation: fadeUp 0.4s ease 0.05s both; position: relative; overflow: hidden; }
   .btn-emergency::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%); pointer-events: none; }
   .btn-emergency:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(214, 48, 49, 0.4); }
   .btn-emergency:active { transform: translateY(0); }
-  
   .pulse-ring { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; }
   .pulse-ring::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); animation: ping 2s ease-in-out infinite; }
   @keyframes ping { 0%, 100% { opacity: 1; transform: scale(1); } 60% { opacity: 0; transform: scale(1.4); } }
-  
   .pulse-ring svg { width: 20px; height: 20px; }
   .btn-emergency .btn-text { flex: 1; text-align: left; }
   .btn-emergency .btn-title { font-size: 0.95rem; font-weight: 700; display: block; letter-spacing: 0.01em; }
   .btn-emergency .btn-sub { font-size: 0.72rem; opacity: 0.82; font-weight: 400; margin-top: 0.1rem; display: block; }
 
-  /* Phone grid */
   .phone-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; animation: fadeUp 0.4s ease 0.08s both; }
   .phone-btn { display: flex; align-items: center; justify-content: center; gap: 0.35rem; padding: 0.7rem 0.4rem; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--text-secondary); font-size: 0.7rem; font-weight: 500; box-shadow: var(--shadow-sm); transition: all 0.15s ease; letter-spacing: 0.01em; text-align: center; }
   .phone-btn:hover { background: var(--red-soft); border-color: rgba(214,48,49,0.2); color: var(--red); transform: translateY(-1px); box-shadow: var(--shadow-md); }
   .phone-btn svg { width: 13px; height: 13px; flex-shrink: 0; color: var(--red); }
 
-  /* ─── STANDARD LINK BUTTON ─── */
   .link-btn { display: flex; align-items: center; gap: 1rem; width: 100%; padding: 1rem 1.25rem; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--text-primary); box-shadow: var(--shadow-sm); transition: all 0.18s ease; position: relative; }
   .link-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); border-color: rgba(0,0,0,0.14); }
   .link-btn:active { transform: translateY(0); box-shadow: var(--shadow-sm); }
@@ -151,7 +100,6 @@
   .btn-whatsapp { background: linear-gradient(135deg, #e8faf3, #f0fdf8); border-color: rgba(0,184,148,0.2); }
   .btn-whatsapp:hover { background: linear-gradient(135deg, #d4f5ea, #e6faf5); border-color: rgba(0,184,148,0.35); }
 
-  /* ─── SECTION ACCORDION ─── */
   .accordion { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); transition: box-shadow 0.18s ease; }
   .accordion:hover { box-shadow: var(--shadow-md); }
   .accordion-header { display: flex; align-items: center; gap: 1rem; width: 100%; padding: 1rem 1.25rem; background: none; border: none; cursor: pointer; text-align: left; transition: background 0.15s ease; }
@@ -166,7 +114,6 @@
   .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(.4,0,.2,1); background: #fafbfc; }
   .accordion-body.open { max-height: 1000px; }
   .accordion-inner { padding: 0.35rem 0.75rem 0.75rem; display: flex; flex-direction: column; gap: 0.4rem; border-top: 1px solid var(--border); }
-  
   .sub-link { display: flex; align-items: center; gap: 0.85rem; padding: 0.75rem 0.75rem; border-radius: 12px; text-decoration: none; color: var(--text-primary); font-size: 0.85rem; font-weight: 500; transition: all 0.15s ease; border: 1px solid transparent; text-align: left; }
   .sub-link:hover { background: var(--card); border-color: var(--border); transform: translateX(3px); }
   .sub-link .sub-icon { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: var(--accent-soft); flex-shrink: 0; }
@@ -180,61 +127,27 @@
   .section-label { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0.5rem 0.25rem; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
   .section-label::before, .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-  /* ─── FIX: FOOTER TEXT MÁS LEGIBLE ─── */
   .footer { text-align: center; margin-top: 2.5rem; padding: 0 1rem; animation: fadeUp 0.5s ease 0.5s both; }
   .footer-text { font-size: 0.75rem; color: var(--text-primary); font-weight: 600; line-height: 1.6; }
   .footer-text a { color: var(--accent); text-decoration: none; font-weight: 700; }
 
-  .bg-blue   { background: #e8edf7; }
-  .bg-red    { background: #fff0ef; }
-  .bg-green  { background: #e6faf6; }
+  .bg-blue { background: #e8edf7; }
+  .bg-red  { background: #fff0ef; }
+  .bg-green { background: #e6faf6; }
 
   @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-  .links-section > *:nth-child(1)  { animation: fadeUp 0.4s ease 0.08s both; }
-  .links-section > *:nth-child(2)  { animation: fadeUp 0.4s ease 0.13s both; }
-  .links-section > *:nth-child(3)  { animation: fadeUp 0.4s ease 0.18s both; }
-  .links-section > *:nth-child(4)  { animation: fadeUp 0.4s ease 0.22s both; }
-  .links-section > *:nth-child(5)  { animation: fadeUp 0.4s ease 0.26s both; }
-  .links-section > *:nth-child(6)  { animation: fadeUp 0.4s ease 0.30s both; }
-  .links-section > *:nth-child(7)  { animation: fadeUp 0.4s ease 0.34s both; }
-  .links-section > *:nth-child(8)  { animation: fadeUp 0.4s ease 0.38s both; }
+  .links-section > *:nth-child(1) { animation: fadeUp 0.4s ease 0.08s both; }
+  .links-section > *:nth-child(2) { animation: fadeUp 0.4s ease 0.13s both; }
+  .links-section > *:nth-child(3) { animation: fadeUp 0.4s ease 0.18s both; }
+  .links-section > *:nth-child(4) { animation: fadeUp 0.4s ease 0.22s both; }
+  .links-section > *:nth-child(5) { animation: fadeUp 0.4s ease 0.26s both; }
+  .links-section > *:nth-child(6) { animation: fadeUp 0.4s ease 0.30s both; }
+  .links-section > *:nth-child(7) { animation: fadeUp 0.4s ease 0.34s both; }
+  .links-section > *:nth-child(8) { animation: fadeUp 0.4s ease 0.38s both; }
 
-  /* ─── IOS MODAL STYLES ─── */
-  .ios-modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
-    z-index: 99999;
-    align-items: flex-end;
-    justify-content: center;
-    padding: 1rem;
-    animation: fadeIn 0.3s ease;
-  }
-  .ios-modal-content {
-    background: #fff;
-    width: 100%;
-    max-width: 400px;
-    border-radius: 20px;
-    padding: 1.5rem;
-    position: relative;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-    animation: slideUp 0.3s ease;
-  }
-  .ios-close-btn {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: #f0f2f5;
-    border: none;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: var(--text-secondary);
-    cursor: pointer;
-  }
+  .ios-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 99999; align-items: flex-end; justify-content: center; padding: 1rem; animation: fadeIn 0.3s ease; }
+  .ios-modal-content { background: #fff; width: 100%; max-width: 400px; border-radius: 20px; padding: 1.5rem; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2); animation: slideUp 0.3s ease; }
+  .ios-close-btn { position: absolute; top: 1rem; right: 1rem; background: #f0f2f5; border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 0.9rem; font-weight: bold; color: var(--text-secondary); cursor: pointer; }
   .ios-modal-title { display: block; font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
   .ios-modal-text { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem; }
   .ios-modal-list { margin-left: 1.2rem; font-size: 0.85rem; color: var(--text-primary); line-height: 1.8; }
@@ -242,13 +155,12 @@
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-  /* ACCESSIBILITY Y OTROS */
   .a11y-fab { position: fixed; bottom: 1.5rem; left: 1.5rem; z-index: 9999; }
-  .a11y-toggle { width: 52px; height: 52px; border-radius: 50%; background: #ffffff; border: 1.5px solid rgba(0, 0, 0, 0.10); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18), 0 1px 4px rgba(0,0,0,0.10); transition: transform 0.2s ease, box-shadow 0.2s ease; color: var(--accent); }
-  .a11y-toggle:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(0, 0, 0, 0.22), 0 2px 8px rgba(0,0,0,0.10); }
+  .a11y-toggle { width: 52px; height: 52px; border-radius: 50%; background: #ffffff; border: 1.5px solid rgba(0,0,0,0.10); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.18), 0 1px 4px rgba(0,0,0,0.10); transition: transform 0.2s ease, box-shadow 0.2s ease; color: var(--accent); }
+  .a11y-toggle:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.10); }
   .a11y-toggle svg { width: 26px; height: 26px; }
   .a11y-toast { position: absolute; bottom: 13px; left: 62px; background: #ffffff; border: 1px solid var(--border); border-radius: 10px; padding: 0.42rem 0.9rem; font-size: 0.73rem; font-weight: 600; color: var(--accent); box-shadow: 0 4px 16px rgba(0,0,0,0.12); white-space: nowrap; opacity: 1; transform: translateX(0); transition: opacity 0.7s ease, transform 0.7s ease; pointer-events: none; letter-spacing: 0.04em; text-transform: uppercase; }
-  .a11y-toast::before { content: ''; position: absolute; left: -6px; top: 50%; transform: translateY(-50%); width: 10px; height: 10px; background: #ffffff; border-left: 1px solid var(--border); border-bottom: 1px solid var(--border); transform: translateY(-50%) rotate(45deg); }
+  .a11y-toast::before { content: ''; position: absolute; left: -6px; top: 50%; width: 10px; height: 10px; background: #ffffff; border-left: 1px solid var(--border); border-bottom: 1px solid var(--border); transform: translateY(-50%) rotate(45deg); }
   .a11y-toast.hidden { opacity: 0; transform: translateX(-6px); }
   .a11y-panel { position: absolute; bottom: 62px; left: 0; width: clamp(220px, 240px, 92vw); background: #fff; border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.16); padding: 0.85rem; display: none; flex-direction: column; gap: 0.55rem; overflow: hidden; }
   .a11y-panel.open { display: flex; }
@@ -270,10 +182,7 @@
   body.high-contrast .accordion-body { background: #0a0a0a !important; }
   body.high-contrast .accordion-inner .sub-link:hover { background: #222 !important; }
   body.high-contrast .social-icon-btn { background: #111 !important; border-color: #444 !important; }
-  
-  /* ─── FIX: TWITTER VISIBLE EN ALTO CONTRASTE ─── */
   body.high-contrast .social-icon-btn[title="X / Twitter"] svg { stroke: #ffffff !important; }
-  
   body.high-contrast .a11y-panel { background: #111 !important; border-color: #555 !important; }
   body.high-contrast .a11y-label { color: #fff !important; }
   body.high-contrast .a11y-btn { background: #222 !important; border-color: #666 !important; color: #fff !important; }
@@ -511,7 +420,9 @@
     <p class="footer-text" style="margin-top:0.3rem;">Servicio Aeromédico 24/7 · 365 días al año</p>
   </div>
 
-</div><div id="ios-install-modal" class="ios-modal">
+</div>
+
+<div id="ios-install-modal" class="ios-modal">
   <div class="ios-modal-content">
     <button class="ios-close-btn" onclick="document.getElementById('ios-install-modal').style.display='none'">✕</button>
     <span class="ios-modal-title">Instalar en iPhone</span>
@@ -527,49 +438,26 @@
   let promptInstalacion;
   const btnInstalar = document.getElementById('btn-install');
   const iosModal = document.getElementById('ios-install-modal');
-
-  // Solo activamos el botón si la pantalla es pequeña (tipo celular)
   const esMovilPorTamano = window.innerWidth <= 768;
   const esIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   const esStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
-
-  // Si es un iPhone pequeño y NO está instalada, mostramos el botón
-  if (esIOS && !esStandalone && esMovilPorTamano) {
-    btnInstalar.style.display = 'flex';
-  }
-
-  // Si es Android, esperamos el evento
+  if (esIOS && !esStandalone && esMovilPorTamano) { btnInstalar.style.display = 'flex'; }
   window.addEventListener('beforeinstallprompt', (evento) => {
     evento.preventDefault();
     promptInstalacion = evento;
-    // Solo mostramos el botón en Android si es móvil
-    if (!esStandalone && esMovilPorTamano) {
-      btnInstalar.style.display = 'flex';
-    }
+    if (!esStandalone && esMovilPorTamano) { btnInstalar.style.display = 'flex'; }
   });
-
-  // Evento del botón
   btnInstalar.addEventListener('click', async () => {
-    if (esIOS) {
-      iosModal.style.display = 'flex';
-    } else if (promptInstalacion) {
+    if (esIOS) { iosModal.style.display = 'flex'; }
+    else if (promptInstalacion) {
       promptInstalacion.prompt();
       const resultado = await promptInstalacion.userChoice;
-      if (resultado.outcome === 'accepted') {
-        btnInstalar.style.display = 'none';
-      }
+      if (resultado.outcome === 'accepted') { btnInstalar.style.display = 'none'; }
       promptInstalacion = null;
     }
   });
-
-  window.addEventListener('appinstalled', () => {
-    btnInstalar.style.display = 'none';
-    promptInstalacion = null;
-  });
-
-  iosModal.addEventListener('click', (e) => {
-    if (e.target === iosModal) iosModal.style.display = 'none';
-  });
+  window.addEventListener('appinstalled', () => { btnInstalar.style.display = 'none'; promptInstalacion = null; });
+  iosModal.addEventListener('click', (e) => { if (e.target === iosModal) iosModal.style.display = 'none'; });
 </script>
 
 <script>
@@ -580,10 +468,7 @@
       h.classList.remove('open');
       h.nextElementSibling.classList.remove('open');
     });
-    if (!isOpen) {
-      header.classList.add('open');
-      body.classList.add('open');
-    }
+    if (!isOpen) { header.classList.add('open'); body.classList.add('open'); }
   }
 </script>
 
@@ -605,9 +490,7 @@
       <button class="a11y-btn" id="monoBtn" onclick="toggleContrast('mono')" aria-label="Monocromo">Mono</button>
     </div>
   </div>
-
   <div class="a11y-toast" id="a11yToast">Accesibilidad</div>
-
   <button class="a11y-toggle" id="a11yToggle" onclick="toggleA11y()" aria-label="Abrir opciones de accesibilidad" aria-expanded="false">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">
       <circle cx="12" cy="5" r="2"/>
@@ -619,31 +502,26 @@
 <script>
   let fontSize = 100;
   let contrastMode = null;
-
   window.addEventListener('DOMContentLoaded', () => {
     const toast = document.getElementById('a11yToast');
     setTimeout(() => { toast.classList.add('hidden'); }, 3000);
   });
-
   function toggleA11y() {
     const panel = document.getElementById('a11yPanel');
     const btn = document.getElementById('a11yToggle');
     const isOpen = panel.classList.toggle('open');
     btn.setAttribute('aria-expanded', isOpen);
   }
-
   function changeTextSize(dir) {
     fontSize = Math.min(140, Math.max(75, fontSize + dir * 10));
     document.documentElement.style.fontSize = fontSize + '%';
   }
-
   function toggleDyslexia() {
     const active = document.body.classList.toggle('dyslexia-font');
     const btn = document.getElementById('dyslexiaBtn');
     btn.textContent = active ? 'Desactivar' : 'Activar';
     btn.classList.toggle('active', active);
   }
-
   function toggleContrast(mode) {
     const hcBtn = document.getElementById('contrastBtn');
     const monoBtn = document.getElementById('monoBtn');
@@ -660,7 +538,6 @@
       contrastMode = null;
     }
   }
-
   document.addEventListener('click', function(e) {
     if (!e.target.closest('.a11y-fab')) {
       document.getElementById('a11yPanel').classList.remove('open');
@@ -669,18 +546,14 @@
   });
 </script>
 
-
 <script>
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js').then(reg => {
-      // Cada vez que el usuario abre la app, busca actualizaciones
+    navigator.serviceWorker.register('./sw.js').then(reg => {
       reg.update();
-
       reg.addEventListener('updatefound', () => {
         const newWorker = reg.installing;
         newWorker.addEventListener('statechange', () => {
           if (newWorker.state === 'activated') {
-            // Nueva versión activa → recarga la página
             window.location.reload();
           }
         });
@@ -689,8 +562,5 @@
   }
 </script>
 
-
-
- 
 </body>
 </html>
