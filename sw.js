@@ -1,9 +1,7 @@
 // ─── CAMBIÁ ESTE NÚMERO CADA VEZ QUE ACTUALICES EL SITIO ───
-const VERSION = 'v4';
+const VERSION = 'v5';
 // ────────────────────────────────────────────────────────────
-
 const CACHE_NAME = 'aerosilva-' + VERSION;
-
 const ASSETS = [
   './',
   './index.html',
@@ -34,6 +32,20 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
+
+  // ── Navegación (HTML) ──────────────────────────────────────
+  // Siempre va a la red ignorando el caché HTTP del browser.
+  // Esto evita que el browser le devuelva al SW un index.html viejo.
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      fetch(event.request, { cache: 'no-cache' })
+        .catch(() => caches.match('./index.html'))
+    );
+    return;
+  }
+
+  // ── Assets (imágenes, manifest, etc.) ─────────────────────
+  // Network-first: intenta la red, guarda en caché, fallback al caché.
   event.respondWith(
     fetch(event.request)
       .then(response => {
