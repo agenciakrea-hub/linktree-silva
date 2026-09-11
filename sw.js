@@ -1,13 +1,14 @@
 // ─── CAMBIÁ ESTE NÚMERO CADA VEZ QUE ACTUALICES EL SITIO ───
-const VERSION = 'v6';
+const VERSION = 'v7';
 // ────────────────────────────────────────────────────────────
 const CACHE_NAME = 'aerosilva-' + VERSION;
 const ASSETS = [
   './',
   './index.html',
-  './logo.png',
-  './logocelular.jpg',
-  './manifest.json'
+  './manifest.json',
+  './logo-280.png',
+  './icon-192.png',
+  './icon-512.png'
 ];
 
 self.addEventListener('install', event => {
