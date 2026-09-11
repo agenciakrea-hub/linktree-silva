@@ -1,5 +1,5 @@
 // ─── CAMBIÁ ESTE NÚMERO CADA VEZ QUE ACTUALICES EL SITIO ───
-const VERSION = 'v7';
+const VERSION = 'v8';
 // ────────────────────────────────────────────────────────────
 const CACHE_NAME = 'aerosilva-' + VERSION;
 const ASSETS = [
@@ -8,8 +8,10 @@ const ASSETS = [
   './manifest.json',
   './logo-280.png',
   './icon-192.png',
-  './icon-512.png'
+  './icon-512.png',
+  './icon-maskable-512.png'
 ];
+// Las fuentes de fonts/ no se precachean: el handler de fetch las guarda al primer uso.
 
 self.addEventListener('install', event => {
   event.waitUntil(

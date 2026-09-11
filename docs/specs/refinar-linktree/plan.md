@@ -1,6 +1,6 @@
 # Plan — refinar linktree-silva (crítica impeccable 22/40 → objetivo ≥ 30/40)
 
-Estado: **EN EJECUCIÓN**. P0 publicado el 2026-09-11. P1 publicado. P2 publicado. P3 publicado. P4 implementado y commiteado localmente (push pendiente de confirmación). Siguiente: P5.
+Estado: **EN EJECUCIÓN**. P0 publicado el 2026-09-11. P1 publicado. P2 publicado. P3 publicado. P4 publicado. P5 implementado y commiteado localmente (push pendiente de confirmación). Siguiente: P6.
 Contexto: `investigacion.md` (mismo directorio) y
 `.impeccable/critique/2026-09-11T14-11-47Z__index-html.md`.
 
@@ -36,7 +36,7 @@ Contexto: `investigacion.md` (mismo directorio) y
 | T2 | Mostrar el número `(0212) 310.52.25` dentro del botón rojo, en grande, entre el título y el subtítulo | Es el mismo número del `tel:`; hoy no se ve en el botón y solo aparece a 11 px en la fila de abajo | aplicado en P2 (vetable) |
 | T3 | Línea bajo el botón rojo: "Te atiende un coordinador médico. Ten a mano la ubicación y el estado del paciente." | Franco confirmó que es cierto; baja la ansiedad en el momento de más estrés | **aprobado**, aplicado en P2 |
 | T4 | "MedEvac Off Shore" → "MedEvac Offshore" (el subtítulo del acordeón ya dice "Offshore") | Consistencia | aplicado en P3 (vetable) |
-| T5 | Modal de instalación iOS: agregar "Si abriste este enlace desde Instagram, ábrelo primero en Safari" | Hoy indica un botón que no existe en el navegador interno | propuesto |
+| T5 | Modal de instalación iOS: agregar "Si abriste este enlace desde Instagram, ábrelo primero en Safari" | Hoy indica un botón que no existe en el navegador interno | aplicado en P5 (vetable) |
 | — | Bio, títulos, subtítulos, mensajes de WhatsApp, pie: **sin cambios** | Regla 3 | fijo |
 
 ## Decisiones de diseño dentro del alcance
@@ -230,9 +230,9 @@ de commit y push.
 **Modelo:** `sonnet` + `/effort medium`. Acotado y verificable.
 **Archivos:** `sw.js`, `index.html` (l.425–433, 549–561), posible borrado de `logo.png` y `logocelular.jpg`.
 
-- [ ] `sw.js`: `VERSION = 'v8'`; `ASSETS` = lista final (`./`, `index.html`, `manifest.json`, `logo-280.png`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`). Antes de borrar `logo.png`/`logocelular.jpg`, `grep -rn` de referencias en todo el repo. **La recarga automática al activarse queda como está.**
-- [ ] Modal iOS: `role="dialog"`, `aria-modal="true"`, `aria-labelledby`, botón cerrar con `aria-label="Cerrar"`, Escape cierra, foco al abrir y retorno al cerrar; T5 si no se veta.
-- [ ] Repasar que todo `target="_blank"` tenga `rel="noopener"`; `<footer>` sin cambios de contenido.
+- [x] `sw.js`: `VERSION = 'v8'`; `ASSETS` = lista final (`./`, `index.html`, `manifest.json`, `logo-280.png`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`). Antes de borrar `logo.png`/`logocelular.jpg`, `grep -rn` de referencias en todo el repo. **La recarga automática al activarse queda como está.**
+- [x] Modal iOS: `role="dialog"`, `aria-modal="true"`, `aria-labelledby`, botón cerrar con `aria-label="Cerrar"`, Escape cierra, foco al abrir y retorno al cerrar; T5 si no se veta.
+- [x] Repasar que todo `target="_blank"` tenga `rel="noopener"`; `<footer>` sin cambios de contenido.
 
 **Verificación:** `node --check sw.js`; servir y comprobar en chrome-devtools MCP que el SW instala sin error de precache; modal navegable por teclado; `impeccable detect`. Vista previa + confirmación + push.
 
