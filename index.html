@@ -70,12 +70,12 @@
     --tile: #1e4ba8;
     --tile-shadow: rgba(30, 75, 168, 0.35);
 
-    --red: #d63031;
+    --red: #cf2b2c;
     --red-soft: #fff0ef;
     --red-text: #c0262a;           /* 5.3:1 sobre red-soft */
     --red-border: rgba(214, 48, 49, 0.20);
-    --red-shadow: rgba(214, 48, 49, 0.35);
-    --red-shadow-hover: rgba(214, 48, 49, 0.40);
+    --red-shadow: rgba(207, 43, 44, 0.35);
+    --red-shadow-hover: rgba(207, 43, 44, 0.40);
     --on-red: #ffffff;
 
     --green: #25d366;
@@ -192,6 +192,7 @@
     flex-direction: column;
     align-items: center;
     padding: 0.5rem 1rem 6.5rem;
+    position: relative;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
@@ -202,7 +203,7 @@
   .social-icon-btn:focus-visible, .a11y-toggle:focus-visible, .a11y-switch:focus-visible { outline-offset: 3px; }
   .accordion-header:focus-visible { outline-offset: -3px; border-radius: var(--radius); }
 
-  .bg-layer { position: fixed; top: 0; left: 0; width: 100%; height: 120vh; z-index: 0; pointer-events: none; background: radial-gradient(ellipse 130% 55% at 50% 0%, var(--page-glow-1) 0%, transparent 62%), radial-gradient(ellipse 80% 50% at 95% 100%, var(--page-glow-2) 0%, transparent 58%), radial-gradient(ellipse 65% 45% at 0% 58%, var(--page-glow-3) 0%, transparent 52%), radial-gradient(ellipse 90% 38% at 50% 100%, var(--page-glow-4) 0%, transparent 68%); }
+  .bg-layer { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse 130% 557px at 50% 0%, var(--page-glow-1) 0%, transparent 62%), radial-gradient(ellipse 80% 420px at 95% 100%, var(--page-glow-2) 0%, transparent 58%), radial-gradient(ellipse 65% 456px at 0% 587px, var(--page-glow-3) 0%, transparent 52%), radial-gradient(ellipse 90% 380px at 50% 100%, var(--page-glow-4) 0%, transparent 68%); }
 
   .page { width: 100%; max-width: 640px; display: flex; flex-direction: column; gap: 0; position: relative; z-index: 1; }
 
@@ -226,16 +227,16 @@
   .links-section { display: flex; flex-direction: column; gap: 0.75rem; padding: 0 0.25rem; }
 
   .btn-emergency { display: flex; align-items: center; gap: 1rem; width: 100%; padding: 1rem 1.5rem; background: var(--red); border: none; border-radius: var(--radius); color: var(--on-red); text-decoration: none; cursor: pointer; box-shadow: 0 4px 20px var(--red-shadow); transition: transform 0.15s ease, box-shadow 0.15s ease; position: relative; overflow: hidden; }
-  .btn-emergency::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%); pointer-events: none; }
+  .btn-emergency::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 60%); pointer-events: none; }
   .btn-emergency:active { transform: translateY(0); }
   .pulse-ring { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; }
   .pulse-ring::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.35); animation: pulse 3s ease-out infinite; }
   @keyframes pulse { 0% { opacity: 0.9; transform: scale(1); } 70%, 100% { opacity: 0; transform: scale(1.3); } }
   .pulse-ring svg { width: 20px; height: 20px; }
   .btn-emergency .btn-text { flex: 1; min-width: 0; text-align: left; overflow-wrap: anywhere; }
-  .btn-emergency .btn-title { font-size: 0.9375rem; font-weight: 600; display: block; letter-spacing: 0.01em; opacity: 0.95; }
+  .btn-emergency .btn-title { font-size: 0.9375rem; font-weight: 600; display: block; letter-spacing: 0.01em; }
   .btn-emergency .btn-number { font-size: 1.5rem; font-weight: 700; display: block; letter-spacing: 0.01em; line-height: 1.2; margin-top: 0.1rem; font-variant-numeric: tabular-nums; }
-  .btn-emergency .btn-sub { font-size: 0.8125rem; opacity: 0.85; font-weight: 400; margin-top: 0.25rem; display: block; }
+  .btn-emergency .btn-sub { font-size: 0.8125rem; font-weight: 400; margin-top: 0.25rem; display: block; }
   .calm-note { font-size: 0.8125rem; line-height: 1.5; color: var(--page-text-soft); text-align: center; max-width: 60ch; margin: -0.15rem auto 0; padding: 0 0.75rem; text-wrap: balance; }
 
   .phone-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(6.2em, 1fr)); gap: 0.5rem; }
@@ -289,14 +290,13 @@
   .footer-text { font-size: 0.8125rem; color: var(--page-text); font-weight: 600; line-height: 1.6; }
   .footer-text + .footer-text { margin-top: 0.3rem; }
   .footer-text a { color: var(--accent); text-decoration: none; font-weight: 700; }
-  html[data-theme="dark"] .footer-text a { color: var(--accent); }
 
   .bg-blue { background: var(--accent-soft); color: var(--accent); }
 
   .ios-modal { display: flex; position: fixed; inset: 0; background: var(--overlay); z-index: 99999; align-items: flex-end; justify-content: center; padding: 1rem; animation: fadeIn 0.3s ease; }
   .ios-modal[hidden] { display: none; }
   .ios-modal-content { background: var(--card); color: var(--card-text); width: 100%; max-width: 400px; border-radius: 20px; padding: 1.5rem; position: relative; box-shadow: var(--shadow-modal); animation: slideUp 0.3s ease; }
-  .ios-close-btn { position: absolute; top: 1rem; right: 1rem; background: var(--card-hover); border: 1px solid var(--border); width: 32px; height: 32px; border-radius: 50%; font-size: 0.9rem; font-weight: bold; color: var(--card-text-soft); cursor: pointer; }
+  .ios-close-btn { position: absolute; top: 0.75rem; right: 0.75rem; background: var(--card-hover); border: 1px solid var(--border); width: 44px; height: 44px; border-radius: 50%; font-size: 0.9rem; font-weight: bold; color: var(--card-text-soft); cursor: pointer; }
   .ios-modal-title { display: block; font-size: 1.1rem; font-weight: 700; color: var(--card-text); margin-bottom: 0.5rem; padding-right: 2.5rem; }
   .ios-modal-text { font-size: 0.875rem; color: var(--card-text-soft); margin-bottom: 1rem; }
   .ios-modal-list { margin-left: 1.2rem; font-size: 0.875rem; color: var(--card-text); line-height: 1.8; }
@@ -304,19 +304,19 @@
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-  .a11y-fab { position: fixed; bottom: 1.25rem; right: 1rem; z-index: 9999; display: flex; align-items: center; gap: 0.5rem; }
-  .a11y-tag { background: var(--card); color: var(--accent); border: 1px solid var(--border); border-radius: var(--radius-pill); padding: 0.4rem 0.8rem; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.02em; box-shadow: var(--shadow-md); white-space: nowrap; pointer-events: none; }
-  .a11y-toggle { width: 52px; height: 52px; border-radius: 50%; background: var(--card); border: 1.5px solid var(--border-strong); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-fab); transition: transform 0.2s ease, box-shadow 0.2s ease; color: var(--accent); flex-shrink: 0; }
-  .a11y-toggle svg { width: 26px; height: 26px; }
+  .a11y-fab { position: fixed; bottom: 1.25rem; right: 1rem; z-index: 9999; }
+  .a11y-toggle { display: inline-flex; align-items: center; gap: 0.45rem; min-height: 44px; padding: 0 0.95rem 0 0.7rem; border-radius: var(--radius-pill); background: var(--card); border: 1.5px solid var(--border-strong); cursor: pointer; box-shadow: var(--shadow-fab); transition: transform 0.2s ease, box-shadow 0.2s ease; color: var(--accent); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.02em; white-space: nowrap; }
+  .a11y-toggle svg { width: 22px; height: 22px; flex-shrink: 0; }
   .a11y-toggle[aria-expanded="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
-  .a11y-panel { position: absolute; bottom: 64px; right: 0; width: min(300px, calc(100vw - 2rem)); background: var(--card); color: var(--card-text); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow-lg); padding: 0.75rem 0.85rem 0.85rem; display: flex; flex-direction: column; gap: 0.15rem; }
+  .a11y-panel { position: absolute; bottom: 56px; right: 0; width: min(19em, calc(100vw - 2rem)); max-height: calc(100vh - 6.5rem); overflow-y: auto; background: var(--card); color: var(--card-text); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow-lg); padding: 0.75rem 0.85rem 0.85rem; display: flex; flex-direction: column; gap: 0.15rem; }
   .a11y-panel[hidden] { display: none; }
   .a11y-panel-title { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--card-text-soft); padding: 0.25rem 0.25rem 0.55rem; border-bottom: 1px solid var(--border); margin-bottom: 0.35rem; }
   .a11y-row { display: flex; align-items: center; gap: 0.5rem; min-height: 44px; padding: 0.15rem 0.25rem; }
   .a11y-label { font-size: 0.875rem; font-weight: 500; color: var(--card-text); flex: 1 1 auto; min-width: 0; }
-  .a11y-value { font-size: 0.8125rem; font-weight: 600; color: var(--card-text-soft); font-variant-numeric: tabular-nums; min-width: 3.2em; text-align: right; }
+  .a11y-value { font-size: 0.8125rem; font-weight: 600; color: var(--card-text-soft); font-variant-numeric: tabular-nums; min-width: 3.2em; text-align: right; white-space: nowrap; }
   .a11y-btn { background: var(--card); border: 1px solid var(--border-strong); border-radius: 10px; min-width: 44px; min-height: 44px; padding: 0 0.5rem; font-size: 0.9375rem; font-weight: 600; color: var(--card-text); cursor: pointer; transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease; flex-shrink: 0; text-align: center; }
   .a11y-btn:active { background: var(--accent-soft); }
+  .a11y-btn[aria-disabled="true"] { opacity: 0.45; cursor: default; }
   .a11y-reset { align-self: flex-end; background: none; border: 0; color: var(--accent); font-size: 0.8125rem; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 0.25rem 0.25rem 0.4rem; min-height: 32px; }
   .a11y-switch { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; width: 100%; min-height: 44px; padding: 0.15rem 0.25rem; background: none; border: 0; border-radius: 10px; cursor: pointer; text-align: left; font-size: 0.875rem; font-weight: 500; color: var(--card-text); }
   .a11y-switch-track { position: relative; width: 42px; height: 26px; border-radius: 999px; background: var(--switch-off); flex-shrink: 0; transition: background 0.15s ease; }
@@ -353,6 +353,29 @@
 </style>
 </head>
 <body>
+
+<div class="a11y-fab" role="region" aria-label="Opciones de accesibilidad">
+  <div class="a11y-panel" id="a11yPanel" role="group" aria-labelledby="a11yTitulo" hidden>
+    <p class="a11y-panel-title" id="a11yTitulo">Accesibilidad</p>
+    <div class="a11y-row">
+      <span class="a11y-label" id="a11ySizeLabel">Tamaño de texto</span>
+      <span class="a11y-value" id="a11ySizeValue" aria-live="polite">100 %</span>
+      <button type="button" class="a11y-btn" id="a11ySizeDown" aria-label="Reducir texto">A−</button>
+      <button type="button" class="a11y-btn" id="a11ySizeUp" aria-label="Agrandar texto">A+</button>
+    </div>
+    <button type="button" class="a11y-reset" id="a11ySizeReset" hidden>Restablecer tamaño</button>
+    <button type="button" class="a11y-switch" id="a11yFont" role="switch" aria-checked="false">Fuente para dislexia<span class="a11y-switch-track" aria-hidden="true"></span></button>
+    <button type="button" class="a11y-switch" id="a11yDark" role="switch" aria-checked="false">Modo oscuro<span class="a11y-switch-track" aria-hidden="true"></span></button>
+    <button type="button" class="a11y-switch" id="a11yMono" role="switch" aria-checked="false">Monocromo<span class="a11y-switch-track" aria-hidden="true"></span></button>
+  </div>
+  <button class="a11y-toggle" id="a11yToggle" type="button" aria-expanded="false" aria-controls="a11yPanel">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">
+      <circle cx="12" cy="5" r="2"/>
+      <path d="M8 21v-7H5l3-7h8l3 7h-3v7"/>
+    </svg>
+    Accesibilidad
+  </button>
+</div>
 
 <div class="bg-layer" aria-hidden="true"></div>
 
@@ -590,8 +613,8 @@
     <h2 class="ios-modal-title" id="ios-modal-titulo">Instalar en iPhone</h2>
     <p class="ios-modal-text">Si abriste este enlace desde Instagram o Facebook, ábrelo primero en Safari. Luego, para agregar esta app a tu pantalla de inicio:</p>
     <ol class="ios-modal-list">
-      <li>Toca el botón <strong>Compartir</strong> <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg> en la barra inferior de Safari.</li>
-      <li>Desliza hacia abajo y selecciona <strong>"Agregar a inicio"</strong> <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>.</li>
+      <li>Toca el botón <strong>Compartir</strong> <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg> en la barra inferior de Safari.</li>
+      <li>Desliza hacia abajo y selecciona <strong>"Agregar a inicio"</strong> <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>.</li>
     </ol>
   </div>
 </div>
@@ -611,8 +634,9 @@
   });
   const cerrarIos = document.getElementById('ios-modal-cerrar');
   let origenFoco = null;
-  function abrirModalIos() { origenFoco = document.activeElement; iosModal.hidden = false; cerrarIos.focus(); }
-  function cerrarModalIos() { iosModal.hidden = true; if (origenFoco && origenFoco.focus) origenFoco.focus(); }
+  const fondoModal = [document.querySelector('main'), document.querySelector('.a11y-fab')];
+  function abrirModalIos() { origenFoco = document.activeElement; fondoModal.forEach((el) => { el.inert = true; }); iosModal.hidden = false; cerrarIos.focus(); }
+  function cerrarModalIos() { iosModal.hidden = true; fondoModal.forEach((el) => { el.inert = false; }); if (origenFoco && origenFoco.focus) origenFoco.focus(); }
   cerrarIos.addEventListener('click', cerrarModalIos);
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !iosModal.hidden) cerrarModalIos(); });
   btnInstalar.addEventListener('click', async () => {
@@ -637,6 +661,7 @@
         h.classList.remove('open');
         h.setAttribute('aria-expanded', 'false');
         const b = document.getElementById(h.getAttribute('aria-controls'));
+        if (b.contains(document.activeElement)) h.focus();
         b.classList.remove('open');
         b.inert = true;
       });
@@ -650,35 +675,12 @@
       if (reducir) { llevarALaVista(); return; }
       // Esperar a que el cuerpo termine de crecer: antes, el scroll máximo todavía es el viejo.
       let hecho = false;
-      const unaVez = () => { if (hecho) return; hecho = true; body.removeEventListener('transitionend', unaVez); llevarALaVista(); };
+      const unaVez = () => { if (hecho) return; hecho = true; body.removeEventListener('transitionend', unaVez); if (header.classList.contains('open')) llevarALaVista(); };
       body.addEventListener('transitionend', unaVez);
       setTimeout(unaVez, 420);
     });
   });
 </script>
-
-<div class="a11y-fab" role="region" aria-label="Opciones de accesibilidad">
-  <div class="a11y-panel" id="a11yPanel" role="group" aria-labelledby="a11yTitulo" hidden>
-    <p class="a11y-panel-title" id="a11yTitulo">Accesibilidad</p>
-    <div class="a11y-row">
-      <span class="a11y-label" id="a11ySizeLabel">Tamaño de texto</span>
-      <span class="a11y-value" id="a11ySizeValue" aria-live="polite">100 %</span>
-      <button type="button" class="a11y-btn" id="a11ySizeDown" aria-label="Reducir texto">A−</button>
-      <button type="button" class="a11y-btn" id="a11ySizeUp" aria-label="Agrandar texto">A+</button>
-    </div>
-    <button type="button" class="a11y-reset" id="a11ySizeReset" hidden>Restablecer tamaño</button>
-    <button type="button" class="a11y-switch" id="a11yFont" role="switch" aria-checked="false">Fuente para dislexia<span class="a11y-switch-track" aria-hidden="true"></span></button>
-    <button type="button" class="a11y-switch" id="a11yDark" role="switch" aria-checked="false">Modo oscuro<span class="a11y-switch-track" aria-hidden="true"></span></button>
-    <button type="button" class="a11y-switch" id="a11yMono" role="switch" aria-checked="false">Monocromo<span class="a11y-switch-track" aria-hidden="true"></span></button>
-  </div>
-  <span class="a11y-tag" aria-hidden="true">Accesibilidad</span>
-  <button class="a11y-toggle" id="a11yToggle" type="button" aria-label="Accesibilidad" aria-expanded="false" aria-controls="a11yPanel">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">
-      <circle cx="12" cy="5" r="2"/>
-      <path d="M8 21v-7H5l3-7h8l3 7h-3v7"/>
-    </svg>
-  </button>
-</div>
 
 <script>
   (function () {
@@ -704,15 +706,19 @@
     const restablecer = document.getElementById('a11ySizeReset');
     let tam = parseInt(leer('size'), 10);
     if (!(tam >= MIN && tam <= MAX)) tam = 100;
+    const menos = document.getElementById('a11ySizeDown');
+    const mas = document.getElementById('a11ySizeUp');
     function aplicarTamano(n) {
       tam = n;
       html.style.fontSize = n === 100 ? '' : n + '%';
-      valor.textContent = n + ' %';
+      valor.textContent = n + '\u00a0%';
       restablecer.hidden = n === 100;
+      menos.setAttribute('aria-disabled', String(n <= MIN));
+      mas.setAttribute('aria-disabled', String(n >= MAX));
       guardar('size', n === 100 ? null : String(n));
     }
-    document.getElementById('a11ySizeDown').addEventListener('click', () => aplicarTamano(Math.max(MIN, tam - PASO)));
-    document.getElementById('a11ySizeUp').addEventListener('click', () => aplicarTamano(Math.min(MAX, tam + PASO)));
+    menos.addEventListener('click', () => aplicarTamano(Math.max(MIN, tam - PASO)));
+    mas.addEventListener('click', () => aplicarTamano(Math.min(MAX, tam + PASO)));
     restablecer.addEventListener('click', () => aplicarTamano(100));
     aplicarTamano(tam);
 
@@ -736,8 +742,12 @@
 
 <script>
   if ('serviceWorker' in navigator) {
+    // Solo recargar cuando una versión nueva reemplaza a una que ya controlaba la página.
+    // En la primera visita no hay versión previa: recargar ahí duplica la carga sin motivo.
+    const habiaVersionPrevia = !!navigator.serviceWorker.controller;
     navigator.serviceWorker.register('./sw.js').then(reg => {
       reg.update();
+      if (!habiaVersionPrevia) return;
       reg.addEventListener('updatefound', () => {
         const newWorker = reg.installing;
         newWorker.addEventListener('statechange', () => {

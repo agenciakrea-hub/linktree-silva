@@ -1,6 +1,6 @@
 # Plan — refinar linktree-silva (crítica impeccable 22/40 → objetivo ≥ 30/40)
 
-Estado: **EN EJECUCIÓN**. P0 publicado el 2026-09-11. P1 publicado. P2 publicado. P3 publicado. P4 publicado. P5 implementado y commiteado localmente (push pendiente de confirmación). Siguiente: P6.
+Estado: **EN EJECUCIÓN**. P0 publicado el 2026-09-11. P1 publicado. P2 publicado. P3 publicado. P0–P5 publicados. P6 corrido el 2026-09-11: detector 0/0/0, re-crítica 26/40 (desde 22), Lighthouse a11y/BP/SEO 100, verificador sin hallazgos críticos. P7 (correcciones de P6) implementado y commiteado localmente; push pendiente de confirmación.
 Contexto: `investigacion.md` (mismo directorio) y
 `.impeccable/critique/2026-09-11T14-11-47Z__index-html.md`.
 
@@ -61,7 +61,7 @@ Contexto: `investigacion.md` (mismo directorio) y
 2. Implementar, correr las verificaciones del prompt, marcar casillas.
 3. **Vista previa** para Franco, dos formas a la vez:
    - Servidor estático del árbol de trabajo en la IP de Tailscale:
-     `python3 -m http.server 8090 --bind 100.90.211.14` → `http://100.90.211.14:8090/`
+     `python3 -m http.server 8090 --bind 0.0.0.0` → `http://<IP de Tailscale>:8090/`
      desde el celular o la PC (ufw deja pasar `tailscale0`). Limitación: sobre `http`
      el service worker y el prompt de instalación no corren; la PWA se prueba después
      del push en el dominio real.
@@ -251,10 +251,10 @@ de commit y push.
 
 **Modelo:** `opus` + `/effort high`.
 
-- [ ] `impeccable detect index.html` y `detect --viewport 390x844` / `1280x800` contra `https://links.aeroambulanciasilva.com` ya desplegado: exit 0 o solo `dark-glow`.
-- [ ] `/impeccable critique index.html`: nueva puntuación (objetivo ≥ 30/40) y tendencia respecto de 22.
-- [ ] Agente `verificador` sobre `git diff <commit base>..HEAD`: enlaces y `tel:` intactos, mismos botones que al inicio (contarlos), tokens definidos en los dos temas, aria coherente.
-- [ ] Lighthouse móvil (accesibilidad y rendimiento) con chrome-devtools MCP `lighthouse_audit` sobre el dominio real.
+- [x] `impeccable detect index.html` y `detect --viewport 390x844` / `1280x800` contra `https://links.aeroambulanciasilva.com` ya desplegado: exit 0 o solo `dark-glow`.
+- [x] `/impeccable critique index.html`: nueva puntuación (objetivo ≥ 30/40) y tendencia respecto de 22.
+- [x] Agente `verificador` sobre `git diff <commit base>..HEAD`: enlaces y `tel:` intactos, mismos botones que al inicio (contarlos), tokens definidos en los dos temas, aria coherente.
+- [x] Lighthouse móvil (accesibilidad y rendimiento) con chrome-devtools MCP `lighthouse_audit` sobre el dominio real.
 - [ ] Prueba en celular real (Franco): claro/oscuro manual, instalar PWA, tocar "Llamar".
 - [ ] Sin push (P5 ya dejó todo publicado); si P6 encuentra algo, se corrige en un P7 corto con el mismo flujo.
 
@@ -267,6 +267,19 @@ Lighthouse móvil. Pegá evidencia real de cada uno. No hagas push.
 ```
 
 ---
+
+## P7 — Correcciones que dejó P6
+
+**Modelo:** `opus` + `/effort high`. Origen: re-crítica A (P0 recarga, P1 pastilla, P2 modal, P3 140 %), mediciones de B (contraste del rojo, resplandor fijo) y verificador (foco al cerrar, doble clic, `aria-hidden`, regla muerta, IP en el repo).
+
+- [x] Service worker: no recargar en la primera instalación; solo cuando una versión nueva reemplaza a una que ya controlaba la página.
+- [x] Botón rojo: `--red` `#cf2b2c`, sin opacidades en título y subtítulo, velo a `.08` → texto ≥ 4,5:1.
+- [x] `.bg-layer` absoluto sobre el documento (no viaja con el scroll): el contraste de `.calm-note` y las etiquetas deja de depender de la posición.
+- [x] Botón de accesibilidad: una sola pastilla-botón con la etiqueta "Accesibilidad" adentro (antes: pastilla muerta al lado); al principio del DOM, primera parada de Tab.
+- [x] Panel: `max-height` con scroll, ancho en `em`, valor con espacio duro, A−/A+ con `aria-disabled` en los límites.
+- [x] Modal iOS: `inert` sobre `main` y el widget mientras está abierto (trampa de foco real), cerrar de 44 px, íconos con `aria-hidden`.
+- [x] Acordeón: si el foco estaba adentro al cerrar, pasa al encabezado; abrir-cerrar rápido ya no desplaza la página.
+- [x] Regla CSS sin efecto eliminada; IP de Tailscale y rutas absolutas fuera de `docs/` y del snapshot.
 
 ## Decisiones abiertas para anotar
 
