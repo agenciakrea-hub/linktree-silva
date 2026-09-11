@@ -1,6 +1,6 @@
 # Plan — refinar linktree-silva (crítica impeccable 22/40 → objetivo ≥ 30/40)
 
-Estado: **EN EJECUCIÓN**. P0 publicado el 2026-09-11. P1 publicado. P2 implementado y commiteado localmente (push pendiente de confirmación). Siguiente: P3.
+Estado: **EN EJECUCIÓN**. P0 publicado el 2026-09-11. P1 publicado. P2 publicado. P3 implementado y commiteado localmente (push pendiente de confirmación). Siguiente: P4.
 Contexto: `investigacion.md` (mismo directorio) y
 `.impeccable/critique/2026-09-11T14-11-47Z__index-html.md`.
 
@@ -35,7 +35,7 @@ Contexto: `investigacion.md` (mismo directorio) y
 | T1 | Quitar el emoji 🚨 del título del botón rojo (el ícono de teléfono ya está al lado) | Los lectores de pantalla leen "sirena" antes de "Emergencias"; se renderiza distinto en cada sistema; craft-floor de impeccable lo prohíbe como ícono | aplicado en P2 (vetable) |
 | T2 | Mostrar el número `(0212) 310.52.25` dentro del botón rojo, en grande, entre el título y el subtítulo | Es el mismo número del `tel:`; hoy no se ve en el botón y solo aparece a 11 px en la fila de abajo | aplicado en P2 (vetable) |
 | T3 | Línea bajo el botón rojo: "Te atiende un coordinador médico. Ten a mano la ubicación y el estado del paciente." | Franco confirmó que es cierto; baja la ansiedad en el momento de más estrés | **aprobado**, aplicado en P2 |
-| T4 | "MedEvac Off Shore" → "MedEvac Offshore" (el subtítulo del acordeón ya dice "Offshore") | Consistencia | propuesto |
+| T4 | "MedEvac Off Shore" → "MedEvac Offshore" (el subtítulo del acordeón ya dice "Offshore") | Consistencia | aplicado en P3 (vetable) |
 | T5 | Modal de instalación iOS: agregar "Si abriste este enlace desde Instagram, ábrelo primero en Safari" | Hoy indica un botón que no existe en el navegador interno | propuesto |
 | — | Bio, títulos, subtítulos, mensajes de WhatsApp, pie: **sin cambios** | Regla 3 | fijo |
 
@@ -176,13 +176,13 @@ Tailscale + capturas, y esperá mi confirmación antes de commit y push.
 **Modelo:** `opus` + `/effort high`. Técnica verificada; el orden entre `inert`, transición y scroll tiene sutilezas.
 **Archivos:** `index.html` (HTML l.307–378, CSS l.103–125, JS l.463–471).
 
-- [ ] Envolver `.accordion-inner` en `<div class="accordion-clip">` (`min-height: 0; overflow: hidden`); `.accordion-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s cubic-bezier(.4,0,.2,1) }`, `.open { grid-template-rows: 1fr }`; borrar `max-height`. Sin wrapper quedan 18,6 px visibles (verificado).
-- [ ] Cerrado: `inert` en `.accordion-body`; abierto: se quita antes de animar.
-- [ ] Header: `type="button"`, `aria-expanded`, `aria-controls="servicios-lista"`, `id` en el body; listener en JS, no `onclick` inline.
-- [ ] Al abrir: `header.scrollIntoView({ block: 'start', behavior: reduce ? 'auto' : 'smooth' })`.
-- [ ] Íconos por servicio (mismo estilo, stroke 1.8, 24 px): avión (MedEvac), ambulancia (Terrestre, se queda), pulso ECG (Telemedicina, se queda), red de nodos (RAA), triángulo (Planes, se queda), plataforma con olas (Offshore), reloj o luna (FRMS).
-- [ ] T4 si no se veta: "MedEvac Offshore". Resto del copy del acordeón intacto.
-- [ ] `.sub-link`: alto ≥ 44 px, `:focus-visible`, hover dentro de `@media (hover: hover)`.
+- [x] Envolver `.accordion-inner` en `<div class="accordion-clip">` (`min-height: 0; overflow: hidden`); `.accordion-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s cubic-bezier(.4,0,.2,1) }`, `.open { grid-template-rows: 1fr }`; borrar `max-height`. Sin wrapper quedan 18,6 px visibles (verificado).
+- [x] Cerrado: `inert` en `.accordion-body`; abierto: se quita antes de animar.
+- [x] Header: `type="button"`, `aria-expanded`, `aria-controls="servicios-lista"`, `id` en el body; listener en JS, no `onclick` inline.
+- [x] Al abrir: `header.scrollIntoView({ block: 'start', behavior: reduce ? 'auto' : 'smooth' })`.
+- [x] Íconos por servicio (mismo estilo, stroke 1.8, 24 px): avión (MedEvac), ambulancia (Terrestre, se queda), pulso ECG (Telemedicina, se queda), red de nodos (RAA), triángulo (Planes, se queda), plataforma con olas (Offshore), reloj o luna (FRMS).
+- [x] T4 si no se veta: "MedEvac Offshore". Resto del copy del acordeón intacto.
+- [x] `.sub-link`: alto ≥ 44 px, `:focus-visible`, hover dentro de `@media (hover: hover)`.
 
 **Verificación:** con el acordeón cerrado, Tab no entra en los 7 enlaces (`document.activeElement` vía chrome-devtools MCP); abierto, sí; `take_snapshot` muestra `expanded`; detector sin `layout-transition`; captura a mitad de la apertura. Vista previa + confirmación + push.
 
