@@ -1,6 +1,6 @@
 # Plan — refinar linktree-silva (crítica impeccable 22/40 → objetivo ≥ 30/40)
 
-Estado: **EN EJECUCIÓN**. P0 publicado el 2026-09-11. P1 publicado. P2 publicado. P3 implementado y commiteado localmente (push pendiente de confirmación). Siguiente: P4.
+Estado: **EN EJECUCIÓN**. P0 publicado el 2026-09-11. P1 publicado. P2 publicado. P3 publicado. P4 implementado y commiteado localmente (push pendiente de confirmación). Siguiente: P5.
 Contexto: `investigacion.md` (mismo directorio) y
 `.impeccable/critique/2026-09-11T14-11-47Z__index-html.md`.
 
@@ -202,13 +202,13 @@ esperá mi confirmación antes de commit y push.
 **Modelo:** `opus` + `/effort high`. Estado persistente sin parpadeo, semántica y carga de fuente bajo demanda.
 **Archivos:** `index.html` (HTML l.475–500, CSS l.158–172, JS l.502–547, script inline nuevo en `<head>`), nuevos `fonts/OpenDyslexic-Regular.woff2`, `fonts/OpenDyslexic-Bold.woff2`, `fonts/LICENSE-OpenDyslexic.txt`.
 
-- [ ] Botón redondo igual al de hoy, movido a la **derecha** (`right: 1rem`), con etiqueta "Accesibilidad" fija a su izquierda (pill `--card`, `0.75rem/600`) en lugar del toast de 3 s. `aria-expanded` + `aria-controls`. `body { padding-bottom: 6.5rem }`.
-- [ ] Panel `role="group" aria-labelledby="a11y-titulo"`, abre/cierra con `hidden`; Escape cierra y devuelve el foco; clic afuera cierra. Mínimo 260 px de ancho para que "Mono" no caiga huérfano.
-- [ ] Controles (los cinco de hoy): **A−** / **A+** (75–140 % en pasos de 10, región `aria-live="polite"` con el porcentaje) + D2 opcional **Restablecer**; **Fuente dislexia** (toggle `aria-pressed`; carga `fonts/OpenDyslexic-*.woff2` con `FontFace` al activar; `html[data-font="dyslexic"]` aplica la familia con `letter-spacing`/`line-height` sin `!important`); **Oscuro** (toggle `aria-pressed` → `html[data-theme="dark"]`, tokens de P1); **Mono** (toggle `aria-pressed` → `html[data-mono]`, `filter: grayscale(1)` sobre `html` para que el fondo también). Oscuro y Mono pueden convivir.
-- [ ] Un solo nombre por control: etiqueta visible = `aria-label` (hoy conviven "Alto contraste", "Oscuro" y "Modo oscuro").
-- [ ] Estado en `localStorage` (`a11y.size`, `a11y.theme`, `a11y.mono`, `a11y.font`), aplicado en `<html>` por un script inline al principio de `<head>` (antes del CSS) para que no parpadee.
-- [ ] Botones ≥ 44 px; estado activo con contraste verificado en claro y oscuro.
-- [ ] Descargar OpenDyslexic (SIL OFL 1.1) a `fonts/` con su licencia; NO precachear en `sw.js` (el handler de fetch la cachea al primer uso).
+- [x] Botón redondo igual al de hoy, movido a la **derecha** (`right: 1rem`), con etiqueta "Accesibilidad" fija a su izquierda (pill `--card`, `0.75rem/600`) en lugar del toast de 3 s. `aria-expanded` + `aria-controls`. `body { padding-bottom: 6.5rem }`.
+- [x] Panel `role="group" aria-labelledby="a11y-titulo"`, abre/cierra con `hidden`; Escape cierra y devuelve el foco; clic afuera cierra. Mínimo 260 px de ancho para que "Mono" no caiga huérfano.
+- [x] Controles (los cinco de hoy): **A−** / **A+** (75–140 % en pasos de 10, región `aria-live="polite"` con el porcentaje) + D2 opcional **Restablecer**; **Fuente dislexia** (toggle `aria-pressed`; carga `fonts/OpenDyslexic-*.woff2` con `FontFace` al activar; `html[data-font="dyslexic"]` aplica la familia con `letter-spacing`/`line-height` sin `!important`); **Oscuro** (toggle `aria-pressed` → `html[data-theme="dark"]`, tokens de P1); **Mono** (toggle `aria-pressed` → `html[data-mono]`, `filter: grayscale(1)` sobre `html` para que el fondo también). Oscuro y Mono pueden convivir.
+- [x] Un solo nombre por control: etiqueta visible = `aria-label` (hoy conviven "Alto contraste", "Oscuro" y "Modo oscuro").
+- [x] Estado en `localStorage` (`a11y.size`, `a11y.theme`, `a11y.mono`, `a11y.font`), aplicado en `<html>` por un script inline al principio de `<head>` (antes del CSS) para que no parpadee.
+- [x] Botones ≥ 44 px; estado activo con contraste verificado en claro y oscuro.
+- [x] Descargar OpenDyslexic (SIL OFL 1.1) a `fonts/` con su licencia; NO precachear en `sw.js` (el handler de fetch la cachea al primer uso).
 
 **Verificación:** cada control cambia algo visible y vuelve; recargar conserva; captura inmediata tras recarga en oscuro sin flash claro; `take_snapshot` muestra título y etiquetas; Tab/Escape completos; detector sin `text-occlusion`; contraste del panel en ambos temas. Vista previa + confirmación + push.
 
@@ -271,7 +271,7 @@ Lighthouse móvil. Pegá evidencia real de cada uno. No hagas push.
 ## Decisiones abiertas para anotar
 
 - **D1 Redes:** A) al pie (recomendado) / B) arriba, compactas.
-- **D2 Botón "Restablecer"** en el panel de accesibilidad: sí / no.
+- **D2 Botón "Restablecer"**: aplicado en P4 (aparece solo cuando el tamaño no es 100 %).
 - **T1, T2, T4, T5** de la tabla de textos: vetar el que no quieras. T3 ya está aprobado.
 
 ## Qué se vuelve más difícil después de esto

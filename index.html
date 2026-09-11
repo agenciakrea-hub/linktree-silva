@@ -4,6 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aeroambulancias Silva</title>
+<script>
+  // Preferencias de accesibilidad guardadas: se aplican antes de pintar para que no parpadee.
+  (function () {
+    try {
+      var html = document.documentElement;
+      var leer = function (k) { return localStorage.getItem('a11y.' + k); };
+      if (leer('theme') === 'dark') html.setAttribute('data-theme', 'dark');
+      if (leer('mono') === '1') html.setAttribute('data-mono', '');
+      if (leer('font') === 'dyslexic') html.setAttribute('data-font', 'dyslexic');
+      var tam = parseInt(leer('size'), 10);
+      if (tam >= 75 && tam <= 140 && tam !== 100) html.style.fontSize = tam + '%';
+    } catch (e) {}
+  })();
+</script>
 
 <meta name="description" content="Transporte aeromédico especializado en Venezuela. Evacuaciones, traslados médicos y atención de emergencias.">
 <meta property="og:type" content="website">
@@ -86,6 +100,8 @@
     --border: rgba(0, 0, 0, 0.09);
     --border-strong: rgba(0, 0, 0, 0.14);
     --focus: #1e4ba8;
+    --switch-off: rgba(0, 0, 0, 0.22);
+    --switch-knob: #ffffff;
     --overlay: rgba(0, 0, 0, 0.6);
     --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05);
     --shadow-md: 0 4px 16px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
@@ -145,6 +161,8 @@
     --border: rgba(255, 255, 255, 0.12);
     --border-strong: rgba(255, 255, 255, 0.22);
     --focus: #9db8f5;
+    --switch-off: rgba(255, 255, 255, 0.28);
+    --switch-knob: #ffffff;
     --overlay: rgba(0, 0, 0, 0.75);
     --shadow-sm: 0 1px 3px rgba(0,0,0,0.35), 0 1px 2px rgba(0,0,0,0.25);
     --shadow-md: 0 4px 16px rgba(0,0,0,0.40), 0 1px 4px rgba(0,0,0,0.30);
@@ -158,8 +176,10 @@
   html[data-mono] { --page-bg: #aeaeae; }
   html[data-mono][data-theme="dark"] { --page-bg: #151515; }
   html[data-mono] .page, html[data-mono] .bg-layer, html[data-mono] .a11y-fab, html[data-mono] .ios-modal { filter: grayscale(1); }
-  html[data-font="dyslexic"] body, html[data-font="dyslexic"] button { font-family: 'OpenDyslexic', 'Comic Sans MS', 'Trebuchet MS', cursive; letter-spacing: 0.05em; word-spacing: 0.1em; }
-  html[data-font="dyslexic"] body { line-height: 1.8; }
+  @font-face { font-family: 'OpenDyslexic'; src: url('fonts/OpenDyslexic-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'OpenDyslexic'; src: url('fonts/OpenDyslexic-Bold.woff2') format('woff2'); font-weight: 600 700; font-style: normal; font-display: swap; }
+  html[data-font="dyslexic"] body, html[data-font="dyslexic"] button { font-family: 'OpenDyslexic', 'DM Sans', system-ui, sans-serif; letter-spacing: 0.03em; word-spacing: 0.08em; }
+  html[data-font="dyslexic"] body { line-height: 1.7; }
 
   html { scroll-behavior: smooth; background: var(--page-bg); }
 
@@ -171,7 +191,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0.5rem 1rem 5rem;
+    padding: 0.5rem 1rem 6.5rem;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
@@ -179,7 +199,7 @@
   ::selection { background: var(--accent); color: var(--on-accent); }
   :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
   .link-btn:focus-visible, .btn-emergency:focus-visible, .phone-btn:focus-visible, .accordion-header:focus-visible, .sub-link:focus-visible { outline-offset: 3px; }
-  .social-icon-btn:focus-visible, .a11y-toggle:focus-visible { outline-offset: 3px; }
+  .social-icon-btn:focus-visible, .a11y-toggle:focus-visible, .a11y-switch:focus-visible { outline-offset: 3px; }
   .accordion-header:focus-visible { outline-offset: -3px; border-radius: var(--radius); }
 
   .bg-layer { position: fixed; top: 0; left: 0; width: 100%; height: 120vh; z-index: 0; pointer-events: none; background: radial-gradient(ellipse 130% 55% at 50% 0%, var(--page-glow-1) 0%, transparent 62%), radial-gradient(ellipse 80% 50% at 95% 100%, var(--page-glow-2) 0%, transparent 58%), radial-gradient(ellipse 65% 45% at 0% 58%, var(--page-glow-3) 0%, transparent 52%), radial-gradient(ellipse 90% 38% at 50% 100%, var(--page-glow-4) 0%, transparent 68%); }
@@ -212,13 +232,13 @@
   .pulse-ring::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.35); animation: pulse 3s ease-out infinite; }
   @keyframes pulse { 0% { opacity: 0.9; transform: scale(1); } 70%, 100% { opacity: 0; transform: scale(1.3); } }
   .pulse-ring svg { width: 20px; height: 20px; }
-  .btn-emergency .btn-text { flex: 1; text-align: left; }
+  .btn-emergency .btn-text { flex: 1; min-width: 0; text-align: left; overflow-wrap: anywhere; }
   .btn-emergency .btn-title { font-size: 0.9375rem; font-weight: 600; display: block; letter-spacing: 0.01em; opacity: 0.95; }
   .btn-emergency .btn-number { font-size: 1.5rem; font-weight: 700; display: block; letter-spacing: 0.01em; line-height: 1.2; margin-top: 0.1rem; font-variant-numeric: tabular-nums; }
   .btn-emergency .btn-sub { font-size: 0.8125rem; opacity: 0.85; font-weight: 400; margin-top: 0.25rem; display: block; }
-  .calm-note { font-size: 0.8125rem; line-height: 1.5; color: var(--page-text-soft); text-align: center; margin: -0.15rem 0.75rem 0; text-wrap: balance; }
+  .calm-note { font-size: 0.8125rem; line-height: 1.5; color: var(--page-text-soft); text-align: center; max-width: 60ch; margin: -0.15rem auto 0; padding: 0 0.75rem; text-wrap: balance; }
 
-  .phone-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+  .phone-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(6.2em, 1fr)); gap: 0.5rem; }
   .phone-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.1rem; min-height: 60px; padding: 0.55rem 0.4rem; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--card-text); box-shadow: var(--shadow-sm); transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease; text-align: center; }
   .phone-area { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.75rem; font-weight: 500; color: var(--card-text-soft); letter-spacing: 0.02em; }
   .phone-area svg { width: 13px; height: 13px; flex-shrink: 0; color: var(--red); }
@@ -228,8 +248,8 @@
   .link-btn:active { transform: translateY(0); box-shadow: var(--shadow-sm); }
   .link-btn .icon-box { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.35rem; }
   .link-btn .btn-text { flex: 1; min-width: 0; text-align: left; }
-  .link-btn .btn-title { font-size: 0.9375rem; font-weight: 600; color: var(--card-text); display: block; line-height: 1.3; }
-  .link-btn .btn-sub { font-size: 0.8125rem; color: var(--card-text-soft); font-weight: 400; margin-top: 0.15rem; display: block; line-height: 1.4; }
+  .link-btn .btn-title { font-size: 0.9375rem; font-weight: 600; color: var(--card-text); display: block; line-height: 1.3; overflow-wrap: anywhere; }
+  .link-btn .btn-sub { font-size: 0.8125rem; color: var(--card-text-soft); font-weight: 400; margin-top: 0.15rem; display: block; line-height: 1.4; overflow-wrap: anywhere; }
   .link-btn .arrow { color: var(--card-text-muted); flex-shrink: 0; transition: transform 0.15s ease, color 0.15s ease; }
   .link-btn--install { background: var(--card); border: 1.5px solid var(--accent); color: var(--accent); box-shadow: none; }
   .link-btn--install .btn-title { color: var(--accent); }
@@ -245,9 +265,9 @@
   .accordion-header { display: flex; align-items: center; gap: 1rem; width: 100%; padding: 1rem 1.25rem; background: none; border: none; cursor: pointer; text-align: left; transition: background 0.15s ease; }
   .accordion-header.open { background: var(--accent-soft); }
   .accordion-header .icon-box { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .accordion-header .btn-text { flex: 1; text-align: left; }
-  .accordion-header .btn-title { font-size: 0.9rem; font-weight: 600; color: var(--card-text); display: block; }
-  .accordion-header .btn-sub { font-size: 0.8125rem; color: var(--card-text-soft); margin-top: 0.15rem; display: block; }
+  .accordion-header .btn-text { flex: 1; min-width: 0; text-align: left; }
+  .accordion-header .btn-title { font-size: 0.9375rem; font-weight: 600; color: var(--card-text); display: block; line-height: 1.3; overflow-wrap: anywhere; }
+  .accordion-header .btn-sub { font-size: 0.8125rem; color: var(--card-text-soft); margin-top: 0.15rem; display: block; line-height: 1.4; overflow-wrap: anywhere; }
   .chevron-icon { color: var(--card-text-muted); transition: transform 0.25s cubic-bezier(.4,0,.2,1), color 0.25s ease; flex-shrink: 0; }
   .accordion-header.open .chevron-icon { transform: rotate(180deg); color: var(--accent); }
   .accordion-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s cubic-bezier(.4,0,.2,1); }
@@ -257,7 +277,7 @@
   .sub-link { display: flex; align-items: center; gap: 0.85rem; padding: 0.75rem 0.75rem; min-height: 44px; border-radius: 12px; text-decoration: none; color: var(--card-text); font-size: 0.875rem; font-weight: 500; transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease; border: 1px solid transparent; text-align: left; }
   .sub-link .sub-icon { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: var(--accent-soft); flex-shrink: 0; }
   .sub-link .sub-icon svg { width: 16px; height: 16px; color: var(--accent); }
-  .sub-link .sub-text { flex: 1; }
+  .sub-link .sub-text { flex: 1; min-width: 0; overflow-wrap: anywhere; }
   .sub-link .sub-title { display: block; font-size: 0.875rem; font-weight: 600; }
   .sub-link .sub-desc { display: block; font-size: 0.8125rem; color: var(--card-text-muted); margin-top: 0.1rem; }
   .sub-link .sub-arrow { color: var(--card-text-muted); opacity: 0.6; transition: opacity 0.15s ease, transform 0.15s ease, color 0.15s ease; flex-shrink: 0; }
@@ -283,19 +303,25 @@
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-  .a11y-fab { position: fixed; bottom: 1.5rem; left: 1.5rem; z-index: 9999; }
-  .a11y-toggle { width: 52px; height: 52px; border-radius: 50%; background: var(--card); border: 1.5px solid var(--border-strong); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-fab); transition: transform 0.2s ease, box-shadow 0.2s ease; color: var(--accent); }
+  .a11y-fab { position: fixed; bottom: 1.25rem; right: 1rem; z-index: 9999; display: flex; align-items: center; gap: 0.5rem; }
+  .a11y-tag { background: var(--card); color: var(--accent); border: 1px solid var(--border); border-radius: var(--radius-pill); padding: 0.4rem 0.8rem; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.02em; box-shadow: var(--shadow-md); white-space: nowrap; pointer-events: none; }
+  .a11y-toggle { width: 52px; height: 52px; border-radius: 50%; background: var(--card); border: 1.5px solid var(--border-strong); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-fab); transition: transform 0.2s ease, box-shadow 0.2s ease; color: var(--accent); flex-shrink: 0; }
   .a11y-toggle svg { width: 26px; height: 26px; }
-  .a11y-toast { position: absolute; bottom: 13px; left: 62px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 0.42rem 0.9rem; font-size: 0.8125rem; font-weight: 600; color: var(--accent); box-shadow: var(--shadow-md); white-space: nowrap; opacity: 1; transform: translateX(0); transition: opacity 0.7s ease, transform 0.7s ease; pointer-events: none; letter-spacing: 0.04em; text-transform: uppercase; }
-  .a11y-toast::before { content: ''; position: absolute; left: -6px; top: 50%; width: 10px; height: 10px; background: var(--card); border-left: 1px solid var(--border); border-bottom: 1px solid var(--border); transform: translateY(-50%) rotate(45deg); }
-  .a11y-toast.hidden { opacity: 0; transform: translateX(-6px); }
-  .a11y-panel { position: absolute; bottom: 62px; left: 0; width: min(260px, calc(100vw - 2rem)); background: var(--card); color: var(--card-text); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow-lg); padding: 0.85rem; display: none; flex-direction: column; gap: 0.55rem; overflow: hidden; }
-  .a11y-panel.open { display: flex; }
-  .a11y-panel-title { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--card-text-soft); padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); margin-bottom: 0.1rem; }
-  .a11y-row { display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap; }
+  .a11y-toggle[aria-expanded="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+  .a11y-panel { position: absolute; bottom: 64px; right: 0; width: min(300px, calc(100vw - 2rem)); background: var(--card); color: var(--card-text); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow-lg); padding: 0.75rem 0.85rem 0.85rem; display: flex; flex-direction: column; gap: 0.15rem; }
+  .a11y-panel[hidden] { display: none; }
+  .a11y-panel-title { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--card-text-soft); padding: 0.25rem 0.25rem 0.55rem; border-bottom: 1px solid var(--border); margin-bottom: 0.35rem; }
+  .a11y-row { display: flex; align-items: center; gap: 0.5rem; min-height: 44px; padding: 0.15rem 0.25rem; }
   .a11y-label { font-size: 0.875rem; font-weight: 500; color: var(--card-text); flex: 1 1 auto; min-width: 0; }
-  .a11y-btn { background: var(--card); border: 1px solid var(--border-strong); border-radius: 8px; padding: 0.4rem 0.6rem; font-size: 0.875rem; font-weight: 600; color: var(--card-text); cursor: pointer; transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease; font-family: inherit; flex-shrink: 0; min-width: 44px; min-height: 36px; text-align: center; }
-  .a11y-btn.active { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .a11y-value { font-size: 0.8125rem; font-weight: 600; color: var(--card-text-soft); font-variant-numeric: tabular-nums; min-width: 3.2em; text-align: right; }
+  .a11y-btn { background: var(--card); border: 1px solid var(--border-strong); border-radius: 10px; min-width: 44px; min-height: 44px; padding: 0 0.5rem; font-size: 0.9375rem; font-weight: 600; color: var(--card-text); cursor: pointer; transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease; flex-shrink: 0; text-align: center; }
+  .a11y-btn:active { background: var(--accent-soft); }
+  .a11y-reset { align-self: flex-end; background: none; border: 0; color: var(--accent); font-size: 0.8125rem; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 0.25rem 0.25rem 0.4rem; min-height: 32px; }
+  .a11y-switch { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; width: 100%; min-height: 44px; padding: 0.15rem 0.25rem; background: none; border: 0; border-radius: 10px; cursor: pointer; text-align: left; font-size: 0.875rem; font-weight: 500; color: var(--card-text); }
+  .a11y-switch-track { position: relative; width: 42px; height: 26px; border-radius: 999px; background: var(--switch-off); flex-shrink: 0; transition: background 0.15s ease; }
+  .a11y-switch-track::after { content: ''; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--switch-knob); box-shadow: 0 1px 3px rgba(0,0,0,0.35); transition: transform 0.15s ease; }
+  .a11y-switch[aria-checked="true"] .a11y-switch-track { background: var(--accent); }
+  .a11y-switch[aria-checked="true"] .a11y-switch-track::after { transform: translateX(16px); }
 
   /* ── Hover solo con puntero real; en táctil no queda pegado. ─────────────── */
   @media (hover: hover) {
@@ -311,9 +337,9 @@
     .accordion-header.open:hover { background: var(--accent-soft); }
     .sub-link:hover { background: var(--card); border-color: var(--border); transform: translateX(3px); }
     .sub-link:hover .sub-arrow { opacity: 1; transform: translate(2px, -2px); color: var(--accent); }
-    .a11y-toggle:hover { transform: scale(1.08); box-shadow: var(--shadow-fab-hover); }
+    .a11y-toggle:hover { transform: scale(1.06); box-shadow: var(--shadow-fab-hover); }
     .a11y-btn:hover { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
-    .a11y-btn.active:hover { background: var(--accent); color: var(--on-accent); }
+    .a11y-switch:hover { background: var(--card-hover); }
   }
 
   /* ── Movimiento reducido: sin pulso, sin desplazamientos, sin scroll suave. ── */
@@ -321,7 +347,7 @@
     html { scroll-behavior: auto; }
     .pulse-ring::after { animation: none; opacity: 0.6; }
     .ios-modal, .ios-modal-content { animation: none; }
-    .social-icon-btn, .btn-emergency, .phone-btn, .link-btn, .link-btn .arrow, .chevron-icon, .accordion-body, .sub-link, .sub-link .sub-arrow, .a11y-toggle, .a11y-toast { transition: none; }
+    .social-icon-btn, .btn-emergency, .phone-btn, .link-btn, .link-btn .arrow, .chevron-icon, .accordion-body, .sub-link, .sub-link .sub-arrow, .a11y-toggle, .a11y-switch-track, .a11y-switch-track::after { transition: none; }
   }
 </style>
 </head>
@@ -625,25 +651,21 @@
 </script>
 
 <div class="a11y-fab" role="region" aria-label="Opciones de accesibilidad">
-  <div class="a11y-panel" id="a11yPanel" role="menu">
-    <div class="a11y-panel-title">Accesibilidad</div>
+  <div class="a11y-panel" id="a11yPanel" role="group" aria-labelledby="a11yTitulo" hidden>
+    <p class="a11y-panel-title" id="a11yTitulo">Accesibilidad</p>
     <div class="a11y-row">
-      <span class="a11y-label">Tamaño de texto</span>
-      <button class="a11y-btn" onclick="changeTextSize(-1)" aria-label="Reducir texto">A−</button>
-      <button class="a11y-btn" onclick="changeTextSize(1)" aria-label="Agrandar texto">A+</button>
+      <span class="a11y-label" id="a11ySizeLabel">Tamaño de texto</span>
+      <span class="a11y-value" id="a11ySizeValue" aria-live="polite">100 %</span>
+      <button type="button" class="a11y-btn" id="a11ySizeDown" aria-label="Reducir texto">A−</button>
+      <button type="button" class="a11y-btn" id="a11ySizeUp" aria-label="Agrandar texto">A+</button>
     </div>
-    <div class="a11y-row">
-      <span class="a11y-label">Fuente dislexia</span>
-      <button class="a11y-btn" id="dyslexiaBtn" onclick="toggleDyslexia()" aria-label="Activar fuente para dislexia">Activar</button>
-    </div>
-    <div class="a11y-row">
-      <span class="a11y-label">Alto contraste</span>
-      <button class="a11y-btn" id="contrastBtn" onclick="toggleContrast('high')" aria-label="Modo oscuro">Oscuro</button>
-      <button class="a11y-btn" id="monoBtn" onclick="toggleContrast('mono')" aria-label="Monocromo">Mono</button>
-    </div>
+    <button type="button" class="a11y-reset" id="a11ySizeReset" hidden>Restablecer tamaño</button>
+    <button type="button" class="a11y-switch" id="a11yFont" role="switch" aria-checked="false">Fuente para dislexia<span class="a11y-switch-track" aria-hidden="true"></span></button>
+    <button type="button" class="a11y-switch" id="a11yDark" role="switch" aria-checked="false">Modo oscuro<span class="a11y-switch-track" aria-hidden="true"></span></button>
+    <button type="button" class="a11y-switch" id="a11yMono" role="switch" aria-checked="false">Monocromo<span class="a11y-switch-track" aria-hidden="true"></span></button>
   </div>
-  <div class="a11y-toast" id="a11yToast">Accesibilidad</div>
-  <button class="a11y-toggle" id="a11yToggle" onclick="toggleA11y()" aria-label="Abrir opciones de accesibilidad" aria-expanded="false">
+  <span class="a11y-tag" aria-hidden="true">Accesibilidad</span>
+  <button class="a11y-toggle" id="a11yToggle" type="button" aria-label="Accesibilidad" aria-expanded="false" aria-controls="a11yPanel">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">
       <circle cx="12" cy="5" r="2"/>
       <path d="M8 21v-7H5l3-7h8l3 7h-3v7"/>
@@ -652,52 +674,57 @@
 </div>
 
 <script>
-  let fontSize = 100;
-  let contrastMode = null;
-  window.addEventListener('DOMContentLoaded', () => {
-    const toast = document.getElementById('a11yToast');
-    setTimeout(() => { toast.classList.add('hidden'); }, 3000);
-  });
-  function toggleA11y() {
+  (function () {
+    const html = document.documentElement;
     const panel = document.getElementById('a11yPanel');
-    const btn = document.getElementById('a11yToggle');
-    const isOpen = panel.classList.toggle('open');
-    btn.setAttribute('aria-expanded', isOpen);
-  }
-  function changeTextSize(dir) {
-    fontSize = Math.min(140, Math.max(75, fontSize + dir * 10));
-    document.documentElement.style.fontSize = fontSize + '%';
-  }
-  function toggleDyslexia() {
-    const html = document.documentElement;
-    const active = html.getAttribute('data-font') !== 'dyslexic';
-    if (active) html.setAttribute('data-font', 'dyslexic'); else html.removeAttribute('data-font');
-    const btn = document.getElementById('dyslexiaBtn');
-    btn.textContent = active ? 'Desactivar' : 'Activar';
-    btn.classList.toggle('active', active);
-  }
-  function toggleContrast(mode) {
-    const hcBtn = document.getElementById('contrastBtn');
-    const monoBtn = document.getElementById('monoBtn');
-    const html = document.documentElement;
-    html.removeAttribute('data-theme');
-    html.removeAttribute('data-mono');
-    hcBtn.classList.remove('active');
-    monoBtn.classList.remove('active');
-    if (contrastMode !== mode) {
-      if (mode === 'high') html.setAttribute('data-theme', 'dark'); else html.setAttribute('data-mono', '');
-      (mode === 'high' ? hcBtn : monoBtn).classList.add('active');
-      contrastMode = mode;
-    } else {
-      contrastMode = null;
+    const toggle = document.getElementById('a11yToggle');
+    const guardar = (k, v) => { try { if (v === null) localStorage.removeItem('a11y.' + k); else localStorage.setItem('a11y.' + k, v); } catch (e) {} };
+    const leer = (k) => { try { return localStorage.getItem('a11y.' + k); } catch (e) { return null; } };
+
+    // Panel: abrir/cerrar, Escape, clic afuera
+    function mostrarPanel(abierto) {
+      panel.hidden = !abierto;
+      toggle.setAttribute('aria-expanded', String(abierto));
+      if (abierto) panel.querySelector('button').focus();
     }
-  }
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('.a11y-fab')) {
-      document.getElementById('a11yPanel').classList.remove('open');
-      document.getElementById('a11yToggle').setAttribute('aria-expanded', 'false');
+    toggle.addEventListener('click', () => mostrarPanel(panel.hidden));
+    document.addEventListener('click', (e) => { if (!panel.hidden && !e.target.closest('.a11y-fab')) mostrarPanel(false); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !panel.hidden) { mostrarPanel(false); toggle.focus(); } });
+
+    // Tamaño de texto: 75–140 % en pasos de 10
+    const MIN = 75, MAX = 140, PASO = 10;
+    const valor = document.getElementById('a11ySizeValue');
+    const restablecer = document.getElementById('a11ySizeReset');
+    let tam = parseInt(leer('size'), 10);
+    if (!(tam >= MIN && tam <= MAX)) tam = 100;
+    function aplicarTamano(n) {
+      tam = n;
+      html.style.fontSize = n === 100 ? '' : n + '%';
+      valor.textContent = n + ' %';
+      restablecer.hidden = n === 100;
+      guardar('size', n === 100 ? null : String(n));
     }
-  });
+    document.getElementById('a11ySizeDown').addEventListener('click', () => aplicarTamano(Math.max(MIN, tam - PASO)));
+    document.getElementById('a11ySizeUp').addEventListener('click', () => aplicarTamano(Math.min(MAX, tam + PASO)));
+    restablecer.addEventListener('click', () => aplicarTamano(100));
+    aplicarTamano(tam);
+
+    // Interruptores: fuente para dislexia, modo oscuro, monocromo (pueden combinarse)
+    function interruptor(id, atributo, valorAtributo, clave, valorGuardado) {
+      const btn = document.getElementById(id);
+      const activo = () => html.hasAttribute(atributo);
+      const pintar = () => btn.setAttribute('aria-checked', String(activo()));
+      btn.addEventListener('click', () => {
+        if (activo()) { html.removeAttribute(atributo); guardar(clave, null); }
+        else { html.setAttribute(atributo, valorAtributo); guardar(clave, valorGuardado); }
+        pintar();
+      });
+      pintar();
+    }
+    interruptor('a11yFont', 'data-font', 'dyslexic', 'font', 'dyslexic');
+    interruptor('a11yDark', 'data-theme', 'dark', 'theme', 'dark');
+    interruptor('a11yMono', 'data-mono', '', 'mono', '1');
+  })();
 </script>
 
 <script>
