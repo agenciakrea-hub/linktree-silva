@@ -1,6 +1,6 @@
 # Plan — refinar linktree-silva (crítica impeccable 22/40 → objetivo ≥ 30/40)
 
-Estado: **EN EJECUCIÓN**. P0 publicado el 2026-09-11. P1 implementado y commiteado localmente (push pendiente de confirmación). Siguiente: P2.
+Estado: **EN EJECUCIÓN**. P0 publicado el 2026-09-11. P1 publicado. P2 implementado y commiteado localmente (push pendiente de confirmación). Siguiente: P3.
 Contexto: `investigacion.md` (mismo directorio) y
 `.impeccable/critique/2026-09-11T14-11-47Z__index-html.md`.
 
@@ -32,9 +32,9 @@ Contexto: `investigacion.md` (mismo directorio) y
 
 | # | Cambio | Por qué | Estado |
 |---|---|---|---|
-| T1 | Quitar el emoji 🚨 del título del botón rojo (el ícono de teléfono ya está al lado) | Los lectores de pantalla leen "sirena" antes de "Emergencias"; se renderiza distinto en cada sistema; craft-floor de impeccable lo prohíbe como ícono | propuesto |
-| T2 | Mostrar el número `(0212) 310.52.25` dentro del botón rojo, en grande, entre el título y el subtítulo | Es el mismo número del `tel:`; hoy no se ve en el botón y solo aparece a 11 px en la fila de abajo | propuesto |
-| T3 | Línea bajo el botón rojo: "Te atiende un coordinador médico. Ten a mano la ubicación y el estado del paciente." | Franco confirmó que es cierto; baja la ansiedad en el momento de más estrés | **aprobado** |
+| T1 | Quitar el emoji 🚨 del título del botón rojo (el ícono de teléfono ya está al lado) | Los lectores de pantalla leen "sirena" antes de "Emergencias"; se renderiza distinto en cada sistema; craft-floor de impeccable lo prohíbe como ícono | aplicado en P2 (vetable) |
+| T2 | Mostrar el número `(0212) 310.52.25` dentro del botón rojo, en grande, entre el título y el subtítulo | Es el mismo número del `tel:`; hoy no se ve en el botón y solo aparece a 11 px en la fila de abajo | aplicado en P2 (vetable) |
+| T3 | Línea bajo el botón rojo: "Te atiende un coordinador médico. Ten a mano la ubicación y el estado del paciente." | Franco confirmó que es cierto; baja la ansiedad en el momento de más estrés | **aprobado**, aplicado en P2 |
 | T4 | "MedEvac Off Shore" → "MedEvac Offshore" (el subtítulo del acordeón ya dice "Offshore") | Consistencia | propuesto |
 | T5 | Modal de instalación iOS: agregar "Si abriste este enlace desde Instagram, ábrelo primero en Safari" | Hoy indica un botón que no existe en el navegador interno | propuesto |
 | — | Bio, títulos, subtítulos, mensajes de WhatsApp, pie: **sin cambios** | Regla 3 | fijo |
@@ -144,16 +144,16 @@ confirmación antes de commit y push.
 **Archivos:** `index.html` (HTML l.203–303 y 380–420; CSS de perfil, rojo, teléfonos, WhatsApp; JS de instalación l.437–461 solo para reubicar el botón).
 **Necesita antes:** decisión D1 (redes) y veto o no de T1/T2 en la tabla de textos.
 
-- [ ] Perfil: `.logo-container` queda en 140 px; `.profile` padding-top `0.75rem`, `.avatar-wrap` margin `0.9rem`; bio con el mismo texto, `--page-text`, `max-width` que dé dos o tres líneas parejas, margen inferior `1rem`.
-- [ ] Redes según D1: A) mover `.social-icons` al final de `.page` antes del pie, dentro de `<nav aria-label="Redes sociales">`, 44 px; B) quedan arriba con gap y margen menores, 44 px.
-- [ ] Botón rojo: título "Emergencias — Llamar Ahora" en una línea (T1: sin emoji; si se veta, queda el emoji fuera del nombre accesible con `aria-hidden`); T2: número `(0212) 310.52.25` a `1.35rem/700` con `font-variant-numeric: tabular-nums` entre título y subtítulo; subtítulo igual al de hoy. Área táctil ≥ 104 px de alto.
-- [ ] T3 (aprobado): párrafo de una línea bajo el rojo, sobre la página, con `--page-text-soft` a AA, `0.8125rem`.
-- [ ] Fila de teléfonos: las tres, mismos `tel:`, número en una línea (`white-space: nowrap`, `0.9rem/600`, `--card-text`), ícono 14 px, alto ≥ 48 px; en 360 px pasa a `grid-template-columns: 1fr` con los tres apilados si no entran.
-- [ ] WhatsApp: las tres verdes, subtítulos `white-space: normal` (máximo dos líneas), contraste ya corregido en P1.
-- [ ] `#btn-install`: mismo elemento y misma lógica de aparición; movido al final de `.links-section` (después de YouTube), clase `.link-btn--install` (borde `--accent` 1.5 px, fondo `--card`, texto `--accent`), sin `style` inline.
-- [ ] Semántica: `<main>` alrededor de `.page`; `div.section-label` → `<h2 class="section-label">` (mismo aspecto); `<footer>`; `rel="noopener"` en cada `target="_blank"`.
-- [ ] "Más información": las tres tarjetas quedan (sitio, quiénes somos, YouTube).
-- [ ] `nth-child`: ya sin animación escalonada, nada que corregir; confirmar que no queda ninguna regla `nth-child`.
+- [x] Perfil: `.logo-container` queda en 140 px; `.profile` padding-top `0.75rem`, `.avatar-wrap` margin `0.9rem`; bio con el mismo texto, `--page-text`, `max-width` que dé dos o tres líneas parejas, margen inferior `1rem`.
+- [x] Redes según D1 (aplicada A, vetable en la vista previa): A) mover `.social-icons` al final de `.page` antes del pie, dentro de `<nav aria-label="Redes sociales">`, 44 px; B) quedan arriba con gap y margen menores, 44 px.
+- [x] Botón rojo: título "Emergencias — Llamar Ahora" en una línea (T1: sin emoji; si se veta, queda el emoji fuera del nombre accesible con `aria-hidden`); T2: número `(0212) 310.52.25` a `1.35rem/700` con `font-variant-numeric: tabular-nums` entre título y subtítulo; subtítulo igual al de hoy. Área táctil ≥ 104 px de alto.
+- [x] T3 (aprobado): párrafo de una línea bajo el rojo, sobre la página, con `--page-text-soft` a AA, `0.8125rem`.
+- [x] Fila de teléfonos: las tres, mismos `tel:`, número en una línea (`white-space: nowrap`, `0.9rem/600`, `--card-text`), ícono 14 px, alto ≥ 48 px; en 360 px pasa a `grid-template-columns: 1fr` con los tres apilados si no entran.
+- [x] WhatsApp: las tres verdes, subtítulos `white-space: normal` (máximo dos líneas), contraste ya corregido en P1.
+- [x] `#btn-install`: mismo elemento y misma lógica de aparición; movido al final de `.links-section` (después de YouTube), clase `.link-btn--install` (borde `--accent` 1.5 px, fondo `--card`, texto `--accent`), sin `style` inline.
+- [x] Semántica: `<main>` alrededor de `.page`; `div.section-label` → `<h2 class="section-label">` (mismo aspecto); `<footer>`; `rel="noopener"` en cada `target="_blank"`.
+- [x] "Más información": las tres tarjetas quedan (sitio, quiénes somos, YouTube).
+- [x] `nth-child`: ya sin animación escalonada, nada que corregir; confirmar que no queda ninguna regla `nth-child`.
 
 **Verificación:** `getBoundingClientRect().top` del rojo en 390×844 ≤ 300 px (≤ 240 con D1-A); ninguna tarjeta trunca a 360 px; `impeccable detect`; capturas claro/oscuro; Tab en orden lógico (rojo → teléfonos → WhatsApp → servicios → más info → instalar → redes → accesibilidad). Vista previa + confirmación + push.
 

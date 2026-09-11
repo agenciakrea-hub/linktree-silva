@@ -186,15 +186,15 @@
 
   .page { width: 100%; max-width: 640px; display: flex; flex-direction: column; gap: 0; position: relative; z-index: 1; }
 
-  .profile { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.2rem 1.5rem 2rem; }
-  .avatar-wrap { margin-bottom: 1.25rem; }
+  .profile { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0.75rem 1.5rem 1.25rem; }
+  .avatar-wrap { margin-bottom: 0.9rem; }
   .logo-container { width: 140px; height: 140px; border-radius: 20px; background: var(--tile); display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 24px var(--tile-shadow); padding: 12px; }
   .logo-img { width: 116px; height: 116px; object-fit: contain; display: block; }
-  .profile-name { font-size: 1.3rem; font-weight: 700; color: var(--page-text); letter-spacing: -0.01em; margin-bottom: 0.35rem; }
-  .profile-bio { font-size: 0.875rem; color: var(--page-text); font-weight: 400; line-height: 1.55; max-width: 360px; margin: 0 auto 1.4rem; }
+  .profile-name { font-size: 1.3rem; font-weight: 700; color: var(--page-text); letter-spacing: -0.01em; margin-bottom: 0.35rem; text-wrap: balance; }
+  .profile-bio { font-size: 0.875rem; color: var(--page-text); font-weight: 400; line-height: 1.5; max-width: 380px; margin: 0 auto; text-wrap: balance; }
 
-  .social-icons { display: flex; gap: 0.55rem; justify-content: center; flex-wrap: wrap; }
-  .social-icon-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--card); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.15s ease, box-shadow 0.15s ease; box-shadow: var(--shadow-sm); }
+  .social-icons { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+  .social-icon-btn { width: 44px; height: 44px; border-radius: 50%; background: var(--card); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.15s ease, box-shadow 0.15s ease; box-shadow: var(--shadow-sm); }
   .social-icon-btn svg { width: 18px; height: 18px; }
   .social-icon-btn--instagram { color: var(--brand-instagram); }
   .social-icon-btn--facebook { color: var(--brand-facebook); }
@@ -213,26 +213,28 @@
   @keyframes pulse { 0% { opacity: 0.9; transform: scale(1); } 70%, 100% { opacity: 0; transform: scale(1.3); } }
   .pulse-ring svg { width: 20px; height: 20px; }
   .btn-emergency .btn-text { flex: 1; text-align: left; }
-  .btn-emergency .btn-title { font-size: 1rem; font-weight: 700; display: block; letter-spacing: 0.01em; }
-  .btn-emergency .btn-sub { font-size: 0.8125rem; opacity: 0.85; font-weight: 400; margin-top: 0.15rem; display: block; }
-  .btn-emergency .btn-arrow { flex-shrink: 0; opacity: 0.75; }
+  .btn-emergency .btn-title { font-size: 0.9375rem; font-weight: 600; display: block; letter-spacing: 0.01em; opacity: 0.95; }
+  .btn-emergency .btn-number { font-size: 1.5rem; font-weight: 700; display: block; letter-spacing: 0.01em; line-height: 1.2; margin-top: 0.1rem; font-variant-numeric: tabular-nums; }
+  .btn-emergency .btn-sub { font-size: 0.8125rem; opacity: 0.85; font-weight: 400; margin-top: 0.25rem; display: block; }
+  .calm-note { font-size: 0.8125rem; line-height: 1.5; color: var(--page-text-soft); text-align: center; margin: -0.15rem 0.75rem 0; text-wrap: balance; }
 
   .phone-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
-  .phone-btn { display: flex; align-items: center; justify-content: center; gap: 0.35rem; padding: 0.7rem 0.4rem; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--card-text-soft); font-size: 0.8125rem; font-weight: 500; box-shadow: var(--shadow-sm); transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease; letter-spacing: 0.01em; text-align: center; }
-  .phone-btn svg { width: 14px; height: 14px; flex-shrink: 0; color: var(--red); }
+  .phone-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.1rem; min-height: 60px; padding: 0.55rem 0.4rem; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--card-text); box-shadow: var(--shadow-sm); transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease; text-align: center; }
+  .phone-area { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.75rem; font-weight: 500; color: var(--card-text-soft); letter-spacing: 0.02em; }
+  .phone-area svg { width: 13px; height: 13px; flex-shrink: 0; color: var(--red); }
+  .phone-num { font-size: 1rem; font-weight: 700; letter-spacing: 0.01em; font-variant-numeric: tabular-nums; white-space: nowrap; }
 
   .link-btn { display: flex; align-items: center; gap: 1rem; width: 100%; padding: 1rem 1.25rem; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--card-text); box-shadow: var(--shadow-sm); transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease; position: relative; cursor: pointer; text-align: left; }
   .link-btn:active { transform: translateY(0); box-shadow: var(--shadow-sm); }
   .link-btn .icon-box { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.35rem; }
   .link-btn .btn-text { flex: 1; min-width: 0; text-align: left; }
-  .link-btn .btn-title { font-size: 0.9rem; font-weight: 600; color: var(--card-text); display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .link-btn .btn-sub { font-size: 0.8125rem; color: var(--card-text-soft); font-weight: 400; margin-top: 0.15rem; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .link-btn .btn-title { font-size: 0.9375rem; font-weight: 600; color: var(--card-text); display: block; line-height: 1.3; }
+  .link-btn .btn-sub { font-size: 0.8125rem; color: var(--card-text-soft); font-weight: 400; margin-top: 0.15rem; display: block; line-height: 1.4; }
   .link-btn .arrow { color: var(--card-text-muted); flex-shrink: 0; transition: transform 0.15s ease, color 0.15s ease; }
-  .link-btn--install { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
-  .link-btn--install .btn-title { color: inherit; }
-  .link-btn--install .btn-sub { color: inherit; opacity: 0.85; }
-  .icon-box--install { background: rgba(255,255,255,0.15); color: var(--on-accent); }
-  html[data-theme="dark"] .icon-box--install { background: rgba(11,23,48,0.25); }
+  .link-btn--install { background: var(--card); border: 1.5px solid var(--accent); color: var(--accent); box-shadow: none; }
+  .link-btn--install .btn-title { color: var(--accent); }
+  .link-btn--install .btn-sub { color: var(--card-text-soft); }
+  .icon-box--install { background: var(--accent-soft); color: var(--accent); }
   .icon-box--whatsapp { background: var(--green-tint); color: var(--green); }
   .icon-box--youtube { background: var(--brand-youtube-tint); color: var(--brand-youtube); }
   .link-btn .btn-sub--green { color: var(--green-text); }
@@ -262,7 +264,7 @@
   .section-label { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0.5rem 0.25rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--page-text-soft); }
   .section-label::before, .section-label::after { content: ''; flex: 1; height: 1px; background: var(--page-line); }
 
-  .footer { text-align: center; margin-top: 2.5rem; padding: 0 1rem; }
+  .footer { text-align: center; margin-top: 1.5rem; padding: 0 1rem; }
   .footer-text { font-size: 0.8125rem; color: var(--page-text); font-weight: 600; line-height: 1.6; }
   .footer-text + .footer-text { margin-top: 0.3rem; }
   .footer-text a { color: var(--accent); text-decoration: none; font-weight: 700; }
@@ -299,6 +301,7 @@
     .social-icon-btn:hover { transform: translateY(-2px) scale(1.07); box-shadow: var(--shadow-md); }
     .btn-emergency:hover { transform: translateY(-2px); box-shadow: 0 8px 28px var(--red-shadow-hover); }
     .phone-btn:hover { background: var(--red-soft); border-color: var(--red-border); color: var(--red-text); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .phone-btn:hover .phone-area { color: var(--red-text); }
     .link-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); border-color: var(--border-strong); }
     .link-btn:hover .arrow { transform: translate(2px, -2px); color: var(--card-text-soft); }
     .btn-whatsapp:hover { background: linear-gradient(135deg, var(--green-soft-hover-1), var(--green-soft-hover-2)); border-color: var(--green-border-hover); }
@@ -325,7 +328,7 @@
 
 <div class="bg-layer" aria-hidden="true"></div>
 
-<div class="page">
+<main class="page">
 
   <div class="profile">
     <div class="avatar-wrap">
@@ -336,67 +339,38 @@
     <h1 class="profile-name">Aeroambulancias Silva</h1>
     <p class="profile-bio">Transporte aeromédico especializado en Venezuela. Evacuaciones, traslados médicos y atención de emergencias.</p>
 
-    <div class="social-icons">
-      <a href="https://www.instagram.com/aeroambulanciasilva/" target="_blank" class="social-icon-btn social-icon-btn--instagram" title="Instagram">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-      </a>
-      <a href="https://www.facebook.com/aeroambulanciasilva/" target="_blank" class="social-icon-btn social-icon-btn--facebook" title="Facebook">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-      </a>
-      <a href="https://x.com/aeroambulancias" target="_blank" class="social-icon-btn social-icon-btn--x" title="X / Twitter">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l16 16M4 20L20 4"/></svg>
-      </a>
-      <a href="https://www.linkedin.com/company/aeroambulancias-silva" target="_blank" class="social-icon-btn social-icon-btn--linkedin" title="LinkedIn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-      </a>
-      <a href="https://www.youtube.com/@aeroambulanciasilva" target="_blank" class="social-icon-btn social-icon-btn--youtube" title="YouTube">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
-      </a>
-      <a href="https://www.aeroambulanciasilva.com" target="_blank" class="social-icon-btn social-icon-btn--web" title="Sitio Web">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-      </a>
-    </div>
   </div>
 
   <div class="links-section">
-
-    <button id="btn-install" class="link-btn link-btn--install" type="button" style="display: none;">
-      <div class="icon-box icon-box--install">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      </div>
-      <div class="btn-text">
-        <span class="btn-title">Instalar la App</span>
-        <span class="btn-sub">Añadir Aeroambulancias a tu inicio</span>
-      </div>
-    </button>
 
     <a href="tel:+582123105225" class="btn-emergency">
       <div class="pulse-ring">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.39 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       </div>
       <div class="btn-text">
-        <span class="btn-title">🚨 Emergencias — Llamar Ahora</span>
+        <span class="btn-title">Emergencias — Llamar Ahora</span>
+        <span class="btn-number">(0212) 310.52.25</span>
         <span class="btn-sub">Disponible 24 horas · 365 días · Sin importar el horario</span>
       </div>
-      <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
+    <p class="calm-note">Te atiende un coordinador médico. Ten a mano la ubicación y el estado del paciente.</p>
 
     <div class="phone-row">
       <a href="tel:+582123105225" class="phone-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.39 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        (0212) 310.52.25
+        <span class="phone-area"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.39 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(0212)</span>
+        <span class="phone-num">310.52.25</span>
       </a>
       <a href="tel:+582129534822" class="phone-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.39 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        (0212) 953.48.22
+        <span class="phone-area"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.39 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(0212)</span>
+        <span class="phone-num">953.48.22</span>
       </a>
       <a href="tel:+584241466595" class="phone-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.39 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        (0424) 146.65.95
+        <span class="phone-area"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.39 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(0424)</span>
+        <span class="phone-num">146.65.95</span>
       </a>
     </div>
 
-    <a href="https://api.whatsapp.com/send?phone=584241466595&text=M%C3%A1s%20informaci%C3%B3n%20sobre%20los%20servicios%20que%20prestan%20" target="_blank" class="link-btn btn-whatsapp">
+    <a href="https://api.whatsapp.com/send?phone=584241466595&text=M%C3%A1s%20informaci%C3%B3n%20sobre%20los%20servicios%20que%20prestan%20" target="_blank" rel="noopener" class="link-btn btn-whatsapp">
       <div class="icon-box icon-box--whatsapp">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
       </div>
@@ -407,7 +381,7 @@
       <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
     </a>
 
-    <a href="https://api.whatsapp.com/send/?phone=584129197606&text&type=phone_number&app_absent=0&utm_source=ig" target="_blank" class="link-btn btn-whatsapp">
+    <a href="https://api.whatsapp.com/send/?phone=584129197606&text&type=phone_number&app_absent=0&utm_source=ig" target="_blank" rel="noopener" class="link-btn btn-whatsapp">
       <div class="icon-box icon-box--whatsapp">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
       </div>
@@ -418,7 +392,7 @@
       <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
     </a>
 
-    <a href="https://api.whatsapp.com/send/?phone=584129089379" target="_blank" class="link-btn btn-whatsapp">
+    <a href="https://api.whatsapp.com/send/?phone=584129089379" target="_blank" rel="noopener" class="link-btn btn-whatsapp">
       <div class="icon-box icon-box--whatsapp">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
       </div>
@@ -429,7 +403,7 @@
       <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
     </a>
 
-    <div class="section-label">Nuestros Servicios</div>
+    <h2 class="section-label">Nuestros Servicios</h2>
 
     <div class="accordion">
       <button class="accordion-header" onclick="toggleAccordion(this)">
@@ -444,7 +418,7 @@
       </button>
       <div class="accordion-body">
         <div class="accordion-inner">
-          <a href="https://www.aeroambulanciasilva.com/" target="_blank" class="sub-link">
+          <a href="https://www.aeroambulanciasilva.com/" target="_blank" rel="noopener" class="sub-link">
             <div class="sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M3 12h18M3 12l4-4M3 12l4 4"/><circle cx="18" cy="12" r="3" opacity=".5"/></svg></div>
             <div class="sub-text">
               <span class="sub-title">Aeroambulancias / MedEvac</span>
@@ -452,7 +426,7 @@
             </div>
             <svg class="sub-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </a>
-          <a href="https://www.aeroambulanciasilva.com/ambulancias" target="_blank" class="sub-link">
+          <a href="https://www.aeroambulanciasilva.com/ambulancias" target="_blank" rel="noopener" class="sub-link">
             <div class="sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><rect x="1" y="10" width="22" height="10" rx="2"/><path d="M8 10V8a4 4 0 0 1 8 0v2"/><circle cx="7" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg></div>
             <div class="sub-text">
               <span class="sub-title">Ambulancias Terrestres</span>
@@ -460,7 +434,7 @@
             </div>
             <svg class="sub-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </a>
-          <a href="https://www.aeroambulanciasilva.com/sevicios-asistenciales-de-salud" target="_blank" class="sub-link">
+          <a href="https://www.aeroambulanciasilva.com/sevicios-asistenciales-de-salud" target="_blank" rel="noopener" class="sub-link">
             <div class="sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
             <div class="sub-text">
               <span class="sub-title">Atención Médica y Telemedicina</span>
@@ -468,7 +442,7 @@
             </div>
             <svg class="sub-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </a>
-          <a href="https://www.aeroambulanciasilva.com/raa-red-de-apoyo-aeromedico-proveedores" target="_blank" class="sub-link">
+          <a href="https://www.aeroambulanciasilva.com/raa-red-de-apoyo-aeromedico-proveedores" target="_blank" rel="noopener" class="sub-link">
             <div class="sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
             <div class="sub-text">
               <span class="sub-title">Red de Apoyo Aeromédico — RAA</span>
@@ -476,7 +450,7 @@
             </div>
             <svg class="sub-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </a>
-          <a href="https://www.aeroambulanciasilva.com/planes-de-evacuacion-de-emergencia" target="_blank" class="sub-link">
+          <a href="https://www.aeroambulanciasilva.com/planes-de-evacuacion-de-emergencia" target="_blank" rel="noopener" class="sub-link">
             <div class="sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><circle cx="12" cy="17" r="0.5" fill="currentColor"/></svg></div>
             <div class="sub-text">
               <span class="sub-title">Planes de Evacuación y Gestión de Crisis</span>
@@ -484,7 +458,7 @@
             </div>
             <svg class="sub-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </a>
-          <a href="https://www.aeroambulanciasilva.com/servicio-offshore" target="_blank" class="sub-link">
+          <a href="https://www.aeroambulanciasilva.com/servicio-offshore" target="_blank" rel="noopener" class="sub-link">
             <div class="sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M3 17l6-6 4 4 8-10"/><path d="M2 21h20"/></svg></div>
             <div class="sub-text">
               <span class="sub-title">MedEvac Off Shore</span>
@@ -492,7 +466,7 @@
             </div>
             <svg class="sub-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </a>
-          <a href="https://www.aeroambulanciasilva.com/frms" target="_blank" class="sub-link">
+          <a href="https://www.aeroambulanciasilva.com/frms" target="_blank" rel="noopener" class="sub-link">
             <div class="sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
             <div class="sub-text">
               <span class="sub-title">FRMS — Gestión de Fatiga</span>
@@ -504,8 +478,8 @@
       </div>
     </div>
 
-    <div class="section-label">Más información</div>
-    <a href="https://www.aeroambulanciasilva.com" target="_blank" class="link-btn">
+    <h2 class="section-label">Más información</h2>
+    <a href="https://www.aeroambulanciasilva.com" target="_blank" rel="noopener" class="link-btn">
       <div class="icon-box bg-blue">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
       </div>
@@ -516,7 +490,7 @@
       <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
     </a>
 
-    <a href="https://www.aeroambulanciasilva.com/quienes-somos-1" target="_blank" class="link-btn">
+    <a href="https://www.aeroambulanciasilva.com/quienes-somos-1" target="_blank" rel="noopener" class="link-btn">
       <div class="icon-box bg-blue">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       </div>
@@ -527,7 +501,7 @@
       <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
     </a>
 
-    <a href="https://www.youtube.com/@aeroambulanciasilva" target="_blank" class="link-btn">
+    <a href="https://www.youtube.com/@aeroambulanciasilva" target="_blank" rel="noopener" class="link-btn">
       <div class="icon-box icon-box--youtube">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
       </div>
@@ -538,16 +512,47 @@
       <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
     </a>
 
+    <button id="btn-install" class="link-btn link-btn--install" type="button" style="display: none;">
+      <div class="icon-box icon-box--install">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </div>
+      <div class="btn-text">
+        <span class="btn-title">Instalar la App</span>
+        <span class="btn-sub">Añadir Aeroambulancias a tu inicio</span>
+      </div>
+    </button>
+
   </div>
 
-  <div class="footer">
+  <nav class="social-icons" aria-label="Redes sociales">
+    <a href="https://www.instagram.com/aeroambulanciasilva/" target="_blank" rel="noopener" class="social-icon-btn social-icon-btn--instagram" title="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    </a>
+    <a href="https://www.facebook.com/aeroambulanciasilva/" target="_blank" rel="noopener" class="social-icon-btn social-icon-btn--facebook" title="Facebook">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    </a>
+    <a href="https://x.com/aeroambulancias" target="_blank" rel="noopener" class="social-icon-btn social-icon-btn--x" title="X / Twitter">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l16 16M4 20L20 4"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/company/aeroambulancias-silva" target="_blank" rel="noopener" class="social-icon-btn social-icon-btn--linkedin" title="LinkedIn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+    </a>
+    <a href="https://www.youtube.com/@aeroambulanciasilva" target="_blank" rel="noopener" class="social-icon-btn social-icon-btn--youtube" title="YouTube">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="https://www.aeroambulanciasilva.com" target="_blank" rel="noopener" class="social-icon-btn social-icon-btn--web" title="Sitio Web">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    </a>
+  </nav>
+
+  <footer class="footer">
     <p class="footer-text">
-      © 2026 <a href="https://www.aeroambulanciasilva.com" target="_blank">Aeroambulancias Silva</a> &nbsp;·&nbsp; Venezuela
+      © 2026 <a href="https://www.aeroambulanciasilva.com" target="_blank" rel="noopener">Aeroambulancias Silva</a> &nbsp;·&nbsp; Venezuela
     </p>
     <p class="footer-text">Servicio Aeromédico 24/7 · 365 días al año</p>
-  </div>
+  </footer>
 
-</div>
+</main>
 
 <div id="ios-install-modal" class="ios-modal">
   <div class="ios-modal-content">
