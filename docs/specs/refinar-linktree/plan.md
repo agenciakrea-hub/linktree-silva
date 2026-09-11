@@ -1,6 +1,6 @@
 # Plan — refinar linktree-silva (crítica impeccable 22/40 → objetivo ≥ 30/40)
 
-Estado: **EN EJECUCIÓN**. P0 publicado el 2026-09-11. P1 publicado. P2 publicado. P3 publicado. P0–P5 publicados. P6 corrido el 2026-09-11: detector 0/0/0, re-crítica 26/40 (desde 22), Lighthouse a11y/BP/SEO 100, verificador sin hallazgos críticos. P7 (correcciones de P6) implementado y commiteado localmente; push pendiente de confirmación.
+Estado: **EN EJECUCIÓN**. P0 publicado el 2026-09-11. P1 publicado. P2 publicado. P3 publicado. **COMPLETADO el 2026-09-11.** P0–P7 publicados en `main` (último commit `8467f35`, producción byte-idéntica). Detector 0/0/0 contra el dominio; re-crítica 26/40 (desde 22) medida antes de P7; Lighthouse a11y/BP/SEO 100. Queda abierto solo lo que depende del dueño (ver "Decisiones abiertas").
 Contexto: `investigacion.md` (mismo directorio) y
 `.impeccable/critique/2026-09-11T14-11-47Z__index-html.md`.
 
@@ -281,11 +281,14 @@ Lighthouse móvil. Pegá evidencia real de cada uno. No hagas push.
 - [x] Acordeón: si el foco estaba adentro al cerrar, pasa al encabezado; abrir-cerrar rápido ya no desplaza la página.
 - [x] Regla CSS sin efecto eliminada; IP de Tailscale y rutas absolutas fuera de `docs/` y del snapshot.
 
-## Decisiones abiertas para anotar
+## Decisiones abiertas (solo el dueño puede destrabarlas)
 
-- **D1 Redes:** A) al pie (recomendado) / B) arriba, compactas.
+- **D1 Redes:** aplicada A (al pie). Vetable.
 - **D2 Botón "Restablecer"**: aplicado en P4 (aparece solo cuando el tamaño no es 100 %).
-- **T1, T2, T4, T5** de la tabla de textos: vetar el que no quieras. T3 ya está aprobado.
+- **T1, T2, T4, T5**: aplicados, vetables. T3 aprobado.
+- **Rótulos de los tres teléfonos** (P1 de la re-crítica): qué es cada línea, en dos palabras. Sin ese dato no se tocan.
+- **Señales de confianza para el comprador corporativo** (años, flota, certificaciones): entran solo con datos reales.
+- **Copy fuera de T1–T5** (Title Case, "Sin importar el horario" redundante, enlaces repetidos al sitio): la re-crítica lo marca; queda a tu criterio.
 
 ## Qué se vuelve más difícil después de esto
 
