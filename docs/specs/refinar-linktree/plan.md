@@ -1,6 +1,6 @@
 # Plan — refinar linktree-silva (crítica impeccable 22/40 → objetivo ≥ 30/40)
 
-Estado: **EN EJECUCIÓN**. P0 implementado y commiteado localmente el 2026-09-11 (push pendiente de confirmación). Siguiente: P1.
+Estado: **EN EJECUCIÓN**. P0 publicado el 2026-09-11. P1 implementado y commiteado localmente (push pendiente de confirmación). Siguiente: P2.
 Contexto: `investigacion.md` (mismo directorio) y
 `.impeccable/critique/2026-09-11T14-11-47Z__index-html.md`.
 
@@ -110,16 +110,16 @@ esperá mi confirmación antes de commit y push.
 **Modelo:** `opus` + `/effort max`. Base de todo lo que sigue: toca cada regla de color.
 **Archivos:** `index.html` (CSS l.17–195; `stroke`/`fill` inline de los SVG; `style=""` inline de l.236–244 y l.278/289/300).
 
-- [ ] Tokens completos en `:root` (claro): `--page-bg`, `--page-glow-1..4` (los cuatro radiales de `.bg-layer`), `--page-text`, `--page-text-soft`; `--card`, `--card-hover`, `--card-text`, `--card-text-soft`, `--card-text-muted`; `--accent`, `--accent-soft`, `--on-accent`; `--red`, `--red-soft`, `--on-red`; `--green`, `--green-soft`, `--green-text`; `--border`, `--focus`; sombras. Mover `#9ab0d0` de `html` (l.41) a `--page-bg`. **Sin `@media (prefers-color-scheme)` ni `prefers-contrast`.**
-- [ ] Paleta oscura SOLO en `html[data-theme="dark"]` (la activa el panel): fondo azul noche, tarjetas azul grafito, rojo igual, verde ajustado a AA, `color-scheme: dark` dentro de ese selector. Todos los elementos que hoy fallan en "Oscuro" (títulos del acordeón, encabezado abierto, globo del sitio, panel) tienen que leerse.
-- [ ] Todo color hardcodeado pasa por token: `stroke="#0e2a5c"`, `stroke="#fff"`, `fill="#25d366"`, colores de marca de las redes (tokens `--brand-*`), `#fafbfc` del cuerpo del acordeón, `#1e4ba8` del tile, `#009e7a` inline. Los `style=""` inline se reemplazan por clases (`.link-btn--install`, `.btn-sub--green`).
-- [ ] Borrar los bloques `body.high-contrast`, `body.monochrome`, `body.dyslexia-font` (l.174–194) y sus `!important`. Equivalentes nuevos por tokens y `data-*` en `<html>`: `data-theme="dark"`, `data-mono` (`filter: grayscale(1)` sobre `html`, así el fondo también), `data-font="dyslexic"`.
-- [ ] Contraste AA con los valores verificados: `.profile-bio` y `.section-label` con `--page-text`; subtítulo WhatsApp ≥ `#007f61` (4,78:1); `.sub-desc` ≥ `#5a6278` (5,87:1); `.phone-btn:hover` `#c0262a` (5,34:1). Comprobar la paleta oscura elemento por elemento.
-- [ ] Tamaños: ningún texto funcional por debajo de `0.8125rem` (13 px). `.section-label` a `0.75rem` con `letter-spacing: 0.08em`. `.btn-sub`, `.sub-desc` y `.phone-btn` suben.
-- [ ] `:focus-visible` propio (anillo 2 px `--focus` + `outline-offset: 2px`) en enlaces, botones, header del acordeón y controles del panel. `::selection` con la paleta.
-- [ ] Movimiento: eliminar `fadeUp` (l.59, 73, 85, 130, 139–146 y el `@keyframes`); pulso del rojo a 3 s con menos amplitud; `@media (prefers-reduced-motion: reduce)` apaga pulso, `scroll-behavior: smooth` y transiciones de transform.
-- [ ] Todos los `:hover` que mueven o cambian fondo dentro de `@media (hover: hover)`.
-- [ ] `dark-glow` en `.logo-container`: dejar; si el hook lo marca, `/* impeccable-disable-line dark-glow */`.
+- [x] Tokens completos en `:root` (claro): `--page-bg`, `--page-glow-1..4` (los cuatro radiales de `.bg-layer`), `--page-text`, `--page-text-soft`; `--card`, `--card-hover`, `--card-text`, `--card-text-soft`, `--card-text-muted`; `--accent`, `--accent-soft`, `--on-accent`; `--red`, `--red-soft`, `--on-red`; `--green`, `--green-soft`, `--green-text`; `--border`, `--focus`; sombras. Mover `#9ab0d0` de `html` (l.41) a `--page-bg`. **Sin `@media (prefers-color-scheme)` ni `prefers-contrast`.**
+- [x] Paleta oscura SOLO en `html[data-theme="dark"]` (la activa el panel): fondo azul noche, tarjetas azul grafito, rojo igual, verde ajustado a AA, `color-scheme: dark` dentro de ese selector. Todos los elementos que hoy fallan en "Oscuro" (títulos del acordeón, encabezado abierto, globo del sitio, panel) tienen que leerse.
+- [x] Todo color hardcodeado pasa por token: `stroke="#0e2a5c"`, `stroke="#fff"`, `fill="#25d366"`, colores de marca de las redes (tokens `--brand-*`), `#fafbfc` del cuerpo del acordeón, `#1e4ba8` del tile, `#009e7a` inline. Los `style=""` inline se reemplazan por clases (`.link-btn--install`, `.btn-sub--green`).
+- [x] Borrar los bloques `body.high-contrast`, `body.monochrome`, `body.dyslexia-font` (l.174–194) y sus `!important`. Equivalentes nuevos por tokens y `data-*` en `<html>`: `data-theme="dark"`, `data-mono` (`filter: grayscale(1)` sobre `html`, así el fondo también), `data-font="dyslexic"`.
+- [x] Contraste AA con los valores verificados: `.profile-bio` y `.section-label` con `--page-text`; subtítulo WhatsApp ≥ `#007f61` (4,78:1); `.sub-desc` ≥ `#5a6278` (5,87:1); `.phone-btn:hover` `#c0262a` (5,34:1). Comprobar la paleta oscura elemento por elemento.
+- [x] Tamaños: ningún texto funcional por debajo de `0.8125rem` (13 px). `.section-label` a `0.75rem` con `letter-spacing: 0.08em`. `.btn-sub`, `.sub-desc` y `.phone-btn` suben.
+- [x] `:focus-visible` propio (anillo 2 px `--focus` + `outline-offset: 2px`) en enlaces, botones, header del acordeón y controles del panel. `::selection` con la paleta.
+- [x] Movimiento: eliminar `fadeUp` (l.59, 73, 85, 130, 139–146 y el `@keyframes`); pulso del rojo a 3 s con menos amplitud; `@media (prefers-reduced-motion: reduce)` apaga pulso, `scroll-behavior: smooth` y transiciones de transform.
+- [x] Todos los `:hover` que mueven o cambian fondo dentro de `@media (hover: hover)`.
+- [x] `dark-glow` en `.logo-container`: dejar; si el hook lo marca, `/* impeccable-disable-line dark-glow */`.
 
 **Verificación:** `impeccable detect index.html` → 0 hallazgos salvo `dark-glow`; capturas 390×844 y 1280×800 en claro y con `data-theme="dark"` forzado; contraste de los seis textos medido con `getComputedStyle`; Tab por toda la página con anillo visible; `git diff --stat`. Vista previa + confirmación + push.
 
