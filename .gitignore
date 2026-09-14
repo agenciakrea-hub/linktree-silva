@@ -1,5 +1,6 @@
 # Hook local de Claude Code (lo escribe el instalador de impeccable, por máquina)
 .claude/settings.local.json
+.claude/launch.json
 
 # impeccable-ignore-start
 # Ephemeral output, runtime state, and per-dev overrides.

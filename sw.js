@@ -1,5 +1,5 @@
 // ─── CAMBIÁ ESTE NÚMERO CADA VEZ QUE ACTUALICES EL SITIO ───
-const VERSION = 'v8';
+const VERSION = 'v9';
 // ────────────────────────────────────────────────────────────
 const CACHE_NAME = 'aerosilva-' + VERSION;
 const ASSETS = [
@@ -9,9 +9,10 @@ const ASSETS = [
   './logo-280.png',
   './icon-192.png',
   './icon-512.png',
-  './icon-maskable-512.png'
+  './icon-maskable-512.png',
+  './fonts/DMSans-latin.woff2'
 ];
-// Las fuentes de fonts/ no se precachean: el handler de fetch las guarda al primer uso.
+// OpenDyslexic no se precachea: el handler de fetch la guarda al primer uso.
 
 self.addEventListener('install', event => {
   event.waitUntil(
