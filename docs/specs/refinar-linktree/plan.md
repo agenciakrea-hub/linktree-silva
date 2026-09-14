@@ -1,6 +1,6 @@
 # Plan — refinar linktree-silva (crítica impeccable 22/40 → objetivo ≥ 30/40)
 
-Estado: **EN EJECUCIÓN**. P0 publicado el 2026-09-11. P1 publicado. P2 publicado. P3 publicado. **COMPLETADO el 2026-09-11.** P0–P7 publicados en `main` (último commit `8467f35`, producción byte-idéntica). Detector 0/0/0 contra el dominio; re-crítica 26/40 (desde 22) medida antes de P7; Lighthouse a11y/BP/SEO 100. Queda abierto solo lo que depende del dueño (ver "Decisiones abiertas").
+Estado: **COMPLETADO.** P0–P8 publicados en `main` (último commit `44ce718`, 2026-09-14; producción byte-idéntica al repo). Detector de impeccable en 0 (archivo, móvil, escritorio). Re-crítica 26/40 (desde 22). Lighthouse móvil: accesibilidad, buenas prácticas y SEO en 100. Abierto: rotular los tres teléfonos (necesita datos del dueño).
 Contexto: `investigacion.md` (mismo directorio) y
 `.impeccable/critique/2026-09-11T14-11-47Z__index-html.md`.
 
